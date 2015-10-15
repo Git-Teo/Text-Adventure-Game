@@ -234,6 +234,19 @@ def is_valid_exit(exits, chosen_exit):
     """
     return chosen_exit in exits
 
+def enough_space(item):
+    total = 0
+    for i in inventory:
+        total += i["mass"]
+
+    if (total+item["mass"] > 3):
+        return False
+    else:
+        return True
+    
+
+
+
 
 def execute_go(direction):
     """This function, given the direction (e.g. "south") updates the current room
@@ -241,7 +254,12 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
-    current_room = rooms[current_room["exits"][direction]]
+    global current_room
+    if is_valid_exit(current_room["exits"], direction):
+        current_room = rooms[current_room["exits"][direction]]
+        print("You have moved to " + current_room["name"] + ".")
+    else:
+        print("You cannot go there.")
     return
 
 
@@ -251,17 +269,20 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    i = 0
-    while item_id in current_room["items"]:
-        if item_id == current_room["items"][i]:
-            del current_room["items"][i]
-            inventory.append(item_id)
-            print(item_id["name"]+ " has been taken")
-            return
-        i += 1
-    print(item_id["name"]+ " is not in this room")
-    return
     
+    i = 0
+    for item in current_room["items"]:
+        if (item_id == current_room["items"][i]["id"]):
+            if enough_space(item):
+                inventory.append(item)
+                del current_room["items"][i]
+                print(item_id.upper()+ " has been taken")
+                return
+            else:
+                print("You cannot take this item, too much weight")
+        i += 1
+    print(item_id.upper()+ " is not in this room")
+    return
 
 def execute_drop(item_id):
     """This function takes an item_id as an argument and moves this item from the
@@ -269,14 +290,14 @@ def execute_drop(item_id):
     no such item in the inventory, this function prints "You cannot drop that."
     """
     i = 0
-    while item_id in inventory:
-        if item_id == inventory[i]:
+    for item in inventory:
+        if item_id == inventory[i]["id"]:
+            current_room["items"].append(item)
             del inventory[i]
-            current_room["items"].append(item_id)
-            print(item_id["name"]+ " has been dropped")
+            print(item_id.upper()+ " has been dropped")
             return
         i += 1
-    print(item_id["name"]+ " is not in your inventory")
+    print(item_id.upper()+ " is not in your inventory")
     return
 
 
@@ -293,7 +314,6 @@ def execute_command(command):
 
     if 0 == len(command):
         return
-
     if command[0] == "go":
         if len(command) > 1:
             execute_go(command[1])
@@ -316,6 +336,7 @@ def execute_command(command):
         print("This makes no sense.")
 
 
+
 def menu(exits, room_items, inv_items):
     """This function, given a dictionary of possible exits from a room, and a list
     of items found in the room and carried by the player, prints the menu of
@@ -333,7 +354,6 @@ def menu(exits, room_items, inv_items):
 
     # Normalise the input
     normalised_user_input = normalise_input(user_input)
-
     return normalised_user_input
 
 
@@ -353,6 +373,13 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
+def Check_win_condition():
+    All_items = [item_id, item_handbook, item_laptop, item_money, item_pen, item_biscuits]
+    if All_items == rooms["Reception"]["items"]:
+        print("Hello")
+        return True
+    else:
+        return False
 
 # This is the entry point of our program
 def main():
@@ -369,6 +396,9 @@ def main():
         # Execute the player's command
         execute_command(command)
 
+        if Check_win_condition():
+            break
+    print("Congratulations you Won!")
 
 
 # Are we being run as a script? If so, run main().
