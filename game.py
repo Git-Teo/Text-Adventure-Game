@@ -251,16 +251,16 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    i = 0
-    while item_id in current_room["items"]:
-        if item_id == current_room["items"][i]:
-            del current_room["items"][i]
-            inventory.append(item_id)
-            print(item_id["name"]+ " has been taken")
+    for item in current_room["items"]:
+        if item_id == item["id"]:
+            inventory.append(item)
+            current_room["items"].remove(item)
             return
-        i += 1
-    print(item_id["name"]+ " is not in this room")
-    return
+
+    print("You cannot take that.") 
+
+
+
     
 
 def execute_drop(item_id):
@@ -268,17 +268,13 @@ def execute_drop(item_id):
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
-    i = 0
-    while item_id in inventory:
-        if item_id == inventory[i]:
-            del inventory[i]
-            current_room["items"].append(item_id)
-            print(item_id["name"]+ " has been dropped")
+    for item in inventory:
+        if item_id == item["id"]:
+            inventory.remove(item)
+            current_room["items"].append(item)
             return
-        i += 1
-    print(item_id["name"]+ " is not in your inventory")
-    return
 
+    print("You cannot take that.") 
 
     
     
