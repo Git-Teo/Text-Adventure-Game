@@ -374,12 +374,12 @@ def move(exits, direction):
     return rooms[exits[direction]]
 
 def Check_win_condition():
-    All_items = [item_id, item_handbook, item_laptop, item_money, item_pen, item_biscuits]
-    if All_items == rooms["Reception"]["items"]:
-        print("Hello")
-        return True
-    else:
-        return False
+    all_items = [item_id, item_handbook, item_laptop, item_money, item_pen, item_biscuits]
+    
+    for item in all_items:
+        if not(item in rooms["Reception"]["items"]):
+            return False
+    return True
 
 # This is the entry point of our program
 def main():
