@@ -52,7 +52,6 @@ def remove_punct(text):
     for char in text:
         if not (char in string.punctuation):
             no_punct = no_punct + char
-
     return no_punct
 
 
@@ -83,7 +82,7 @@ def normalise_input(user_input):
     """
     # Remove punctuation and convert to lower case
     no_punct = remove_punct(user_input).lower()
-    return filter_words(no_punct, skip_words)
+    return filter_words(no_punct.split(), skip_words)
     #
     # COMPLETE ME!
     #
