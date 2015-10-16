@@ -8,7 +8,11 @@ room_your_room = {
 
     "exits": {"south": "Hallway", "east": "Chem room"},
 
+<<<<<<< HEAD
     "items": [item_water]
+=======
+    "items": [item_biscuits, item_handbook, item_pen]
+>>>>>>> 4193623195254a0b9b9ecbc12d433e60f706758c
 }
 
 room_chem_room = {
@@ -85,7 +89,11 @@ room_security_office = {
 
     "exits": {"west": "Street", "east" : "Utility room"},
 
+<<<<<<< HEAD
     "items": [item_club_key]
+=======
+    "items": []
+>>>>>>> 4193623195254a0b9b9ecbc12d433e60f706758c
 }
 
 room_utility_room = {

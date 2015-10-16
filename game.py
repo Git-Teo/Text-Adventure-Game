@@ -254,6 +254,19 @@ def is_valid_exit(exits, chosen_exit):
     """
     return chosen_exit in exits
 
+def enough_space(item):
+    total = 0
+    for i in inventory:
+        total += i["mass"]
+
+    if (total+item["mass"] > 3):
+        return False
+    else:
+        return True
+    
+
+
+
 
 def execute_go(direction):
     """This function, given the direction (e.g. "south") updates the current room
@@ -261,10 +274,20 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
+<<<<<<< HEAD
     if is_valid_exit(current_room["exits"], direction):
         move(current_room["exits"], direction)
     else:
         print("You cannot go there.")
+=======
+    global current_room
+    if is_valid_exit(current_room["exits"], direction):
+        current_room = rooms[current_room["exits"][direction]]
+        print("You have moved to " + current_room["name"] + ".")
+    else:
+        print("You cannot go there.")
+    return
+>>>>>>> 4193623195254a0b9b9ecbc12d433e60f706758c
 
 
 def execute_take(item_id):
@@ -273,6 +296,7 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
+<<<<<<< HEAD
     for item in current_room["items"]:
         if item_id == item["id"]:
             inventory.append(item)
@@ -284,17 +308,46 @@ def execute_take(item_id):
 
 
     
+=======
+    
+    i = 0
+    for item in current_room["items"]:
+        if (item_id == current_room["items"][i]["id"]):
+            if enough_space(item):
+                inventory.append(item)
+                del current_room["items"][i]
+                print(item_id.upper()+ " has been taken")
+                return
+            else:
+                print("You cannot take this item, too much weight")
+        i += 1
+    print(item_id.upper()+ " is not in this room")
+    return
+>>>>>>> 4193623195254a0b9b9ecbc12d433e60f706758c
 
 def execute_drop(item_id):
     """This function takes an item_id as an argument and moves this item from the
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
+<<<<<<< HEAD
     for item in inventory:
         if item_id == item["id"]:
             inventory.remove(item)
             current_room["items"].append(item)
             return
+=======
+    i = 0
+    for item in inventory:
+        if item_id == inventory[i]["id"]:
+            current_room["items"].append(item)
+            del inventory[i]
+            print(item_id.upper()+ " has been dropped")
+            return
+        i += 1
+    print(item_id.upper()+ " is not in your inventory")
+    return
+>>>>>>> 4193623195254a0b9b9ecbc12d433e60f706758c
 
     print("You cannot take that.") 
 
@@ -310,7 +363,6 @@ def execute_command(command):
 
     if 0 == len(command):
         return
-
     if command[0] == "go":
         if len(command) > 1:
             execute_go(command[1])
@@ -333,6 +385,7 @@ def execute_command(command):
         print("This makes no sense.")
 
 
+
 def menu(exits, room_items, inv_items):
     """This function, given a dictionary of possible exits from a room, and a list
     of items found in the room and carried by the player, prints the menu of
@@ -350,7 +403,6 @@ def menu(exits, room_items, inv_items):
 
     # Normalise the input
     normalised_user_input = normalise_input(user_input)
-
     return normalised_user_input
 
 
@@ -370,6 +422,7 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
+<<<<<<< HEAD
 def check_weight():
     for item_mass in inventory:
         item_mass = item_mass + inventory["mass"]
@@ -377,6 +430,15 @@ def check_weight():
         print("You are over the weight limit! You must drop an item.")
         item_id = input("Type the ID of an item to drop.")
         execute_drop(item_id)
+=======
+def Check_win_condition():
+    all_items = [item_id, item_handbook, item_laptop, item_money, item_pen, item_biscuits]
+    
+    for item in all_items:
+        if not(item in rooms["Reception"]["items"]):
+            return False
+    return True
+>>>>>>> 4193623195254a0b9b9ecbc12d433e60f706758c
 
 # This is the entry point of our program
 def main():
@@ -393,9 +455,15 @@ def main():
         # Execute the player's command
         execute_command(command)
 
+<<<<<<< HEAD
         #Check if weight is under 3kg
         check_weight()
 
+=======
+        if Check_win_condition():
+            break
+    print("Congratulations you Won!")
+>>>>>>> 4193623195254a0b9b9ecbc12d433e60f706758c
 
 
 # Are we being run as a script? If so, run main().
