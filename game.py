@@ -295,7 +295,7 @@ def execute_take(item_id):
     i = 0
     for item in current_room["items"]:
         if (item_id == current_room["items"][i]["id"]):
-            if enough_space(item):
+            if check_weight(item):
                 inventory.append(item)
                 del current_room["items"][i]
                 print(item_id.upper()+ " has been taken")
@@ -394,20 +394,33 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
-def check_weight():
-    for item_mass in inventory:
-        item_mass = item_mass + inventory["mass"]
-    if item_mass > 3: #kilograms
-        print("You are over the weight limit! You must drop an item.")
-        item_id = input("Type the ID of an item to drop.")
-        execute_drop(item_id)
+def check_weight(new_item):
+    total_mass = 0
+    i = 0
+
+    for item in inventory:
+        total_mass += inventory[i]["mass"]
+        i += 1
+
+    if total_mass + new_item["mass"] > 10: #kilograms
+        print("You are over the weight limit! You cannot pick up that item.")
+        return False
+    else:
+        return True
+    #if item_mass > 3: #kilograms
+    #   
+    #   item_id = input("Type the ID of an item to drop.")
+    #   execute_drop(item_id)
+
 def Check_win_condition():
+    return False #temp
+    '''
     all_items = [item_id, item_handbook, item_laptop, item_money, item_pen, item_biscuits]
     
     for item in all_items:
         if not(item in rooms["Reception"]["items"]):
             return False
-    return True
+    return True'''
 
 # This is the entry point of our program
 def main():
@@ -423,9 +436,7 @@ def main():
 
         # Execute the player's command
         execute_command(command)
-        #Check if weight is under 3kg
-        check_weight()
-
+        
         if Check_win_condition():
             break
     print("""
