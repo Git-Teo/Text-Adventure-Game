@@ -290,17 +290,7 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    for item in current_room["items"]:
-        if item_id == item["id"]:
-            inventory.append(item)
-            current_room["items"].remove(item)
-            return
 
-    print("You cannot take that.") 
-
-
-
-    
     i = 0
     for item in current_room["items"]:
         if (item_id == current_room["items"][i]["id"]):
@@ -331,7 +321,6 @@ def execute_drop(item_id):
     print(item_id.upper()+ " is not in your inventory")
     return
 
-    print("You cannot take that.") 
 
     
 
