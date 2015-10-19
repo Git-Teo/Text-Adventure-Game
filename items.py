@@ -105,3 +105,15 @@ item_saw = {
     "mass": 5
 }
 
+item_vodka = {
+    "id": "vodka",
+    
+    "name": "a bottle of vodka",
+
+    "description": "  ",
+
+    "mass": 5,
+
+    "used" : False
+}
+
