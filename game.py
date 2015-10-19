@@ -4,6 +4,7 @@ from map import rooms
 from player import *
 from items import *
 from gameparser import *
+from sys import exit
 
 def is_drunk():
     # waiting for using items code to finish
@@ -154,6 +155,7 @@ def print_room(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
     # Display room name
+    print("----------------------------------------------------------------------------------------------")
     print()
     rn = room["name"].upper()
     if drunk:
@@ -294,7 +296,8 @@ def enough_space(item):
     for i in inventory:
         total += i["mass"]
 
-    if (total+item["mass"] > 3):
+    if (total+item["mass"] > 10):
+        print("You cannot pick up any more items!")
         return False
     else:
         return True
@@ -312,6 +315,7 @@ def execute_go(direction):
     if is_valid_exit(current_room["exits"], direction):
         current_room = rooms[current_room["exits"][direction]]
         print("You have moved to " + current_room["name"] + ".")
+        print()
     else:
         print("You cannot go there.")
     return
@@ -331,6 +335,7 @@ def execute_take(item_id, where):
                 inventory.append(item)
                 del where["items"][i]
                 print(item_id.upper()+ " has been taken")
+                print()
                 return
             else:
                 print("You cannot take this item, too much weight")
@@ -354,8 +359,10 @@ def execute_drop(item_id, where):
             del inventory[i]
             if where == current_room:
                 print(item_id.upper()+ " has been dropped")
+                print()
             else:
                 print(item_id.upper()+ " has been given to " +where["name"])
+                print()
             return
         i += 1
     print(item_id.upper()+ " is not in your inventory")
@@ -409,7 +416,9 @@ def execute_command(command, where):
             execute_talk(command[1], where)
         else:
             print("Talk to who?")
-
+    elif command[0] == "exit":
+        if len(command) == 1:
+            exit()
     else:
         print("This makes no sense.")
 
@@ -451,14 +460,14 @@ def move(exits, direction):
 
 
 def Check_win_condition():
-    return False #temp
-    '''
-    all_items = [item_id, item_handbook, item_laptop, item_money, item_pen, item_biscuits]
+    #Temp. Current win condition is to collect all items and drop in your room. Should we change this to a meaningful objective?
+
+    all_items = [item_earplugs, item_broom, item_heart_key, item_spade_key, item_club_key, item_phone, item_water, item_brain, item_dynamite, item_saw, item_vodka]
     
     for item in all_items:
-        if not(item in rooms["Reception"]["items"]):
+        if not(item in rooms["Your room"]["items"]):
             return False
-    return True'''
+    return True
 
 # This is the entry point of our program
 def main():
