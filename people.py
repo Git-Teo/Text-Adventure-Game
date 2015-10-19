@@ -11,7 +11,7 @@ Toby = {
 
     "speech": "Oh hey there Yu, how's it going? Do you need anything?? *Wink wink*",
 
-    "items": [dynamite, chemicals, alcohol]
+    "items": [item_dynamite, item_vodka],
 
     "take": False
 }
@@ -27,7 +27,7 @@ Jill = {
 
     "speech": "It's you again Yu, i would talk to you but i don't want to. So, bye!",
 
-    "items": []
+    "items": [],
 
     "take": False
 }
@@ -58,7 +58,7 @@ David = {
 
     "speech": "Hmmmm??? Whhaaat?? *Hiccup* ",
 
-    "items": []
+    "items": [],
 
     "take": False
 }
@@ -73,7 +73,7 @@ Sally = {
 
     "speech": "HI YOU!!!!! COME JOIN THE PARTY!!!",
 
-    "items": []
+    "items": [],
 
     "take": False
 }
@@ -88,7 +88,7 @@ Maypac = {
 
     "speech": "Did you bring any drinks?",
 
-    "items": []
+    "items": [],
 
     "take": False
 }
@@ -102,16 +102,15 @@ Fluffy = {
 
     "speech": "Brrraaaaiinnnnssss, BBBRRaaaaIINNSss",
 
-    "items": []
+    "items": [],
 
     "take": False
 }
 
 
-}
+
 
 everyone = {
 	"Toby" : Toby,
 	"Fluffy" : Fluffy
-
 }
