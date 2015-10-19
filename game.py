@@ -428,7 +428,14 @@ def main():
 
         if Check_win_condition():
             break
-    print("Congratulations you Won!")
+    print("""__   __            _    _ _       _ 
+\ \ / /           | |  | (_)     | |
+ \ V /___  _   _  | |  | |_ _ __ | |
+  \ // _ \| | | | | |/\| | | '_ \| |
+  | | (_) | |_| | \  /\  / | | | |_|
+  \_/\___/ \__,_|  \/  \/|_|_| |_(_)
+                                    
+                                    """)
 
 
 # Are we being run as a script? If so, run main().
