@@ -208,7 +208,9 @@ def print_menu(exits, room_items, inv_items):
     # Print take and drop actions   
 
 def print_speech_menu(person, inv):
-    while user_input != "ignore":
+    talk_input =""
+    while True:
+        print()
         for item in inv:
             print("GIVE " +item["id"].upper()+ " to give " +item["id"]+ " to " +person["name"])
 
@@ -218,10 +220,13 @@ def print_speech_menu(person, inv):
         print("IGNORE to exit speech")
         print("What do you want to do?")
 
-        user_input = input("> ")
-        user_input = normalise_input(user_input)
-        if user_input[0] != "ignore":
-            execute_command(user_input, person)
+        talk_input = input("> ")
+        talk_input = normalise_input(talk_input)
+
+        if talk_input[0] == "ignore":
+            return
+        else:
+            execute_command(talk_input, person)
 
 
 
@@ -306,23 +311,26 @@ def execute_drop(item_id, where):
         if item_id == inventory[i]["id"]:
             where["items"].append(item)
             del inventory[i]
-            print(item_id.upper()+ " has been dropped")
+            if where == current_room:
+                print(item_id.upper()+ " has been dropped")
+            else:
+                print(item_id.upper()+ " has been given to " +where["name"])
             return
         i += 1
     print(item_id.upper()+ " is not in your inventory")
     return
 
-def execute_talk(person):
+def execute_talk(person, where):
 
-    i = 0
-    for ppl in people:
-        if person == ppl[i]["name"].lower():   
-            print(person["speech"])
-            print_speech_menu(person, inventory)
+    for ppl in where["people"]:
+        if person == ppl["name"]: 
+            print()  
+            print(ppl["speech"])
+            print_speech_menu(ppl, inventory)
             return
-        i += 1
 
-    print(person["name"]+ " is not in this room")
+    print(person+ " is not in this room")
+    return
 
 
     
@@ -348,11 +356,17 @@ def execute_command(command, where):
         else:
             print("Take what?")
 
-    elif command[0] == "drop":
+    elif command[0] == "drop" or command[0] == "give":
         if len(command) > 1:
             execute_drop(command[1], where)
         else:
             print("Drop what?")
+
+    elif command[0] == "talk":
+        if len(command) > 1:
+            execute_talk(command[1], where)
+        else:
+            print("Talk to who?")
 
     else:
         print("This makes no sense.")

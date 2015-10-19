@@ -12,7 +12,7 @@ room_your_room = {
 
     "items": [],
 
-    "people": []
+    "people": [toby]
 }
 
 room_chem_room = {

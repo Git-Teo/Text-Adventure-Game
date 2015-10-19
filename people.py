@@ -1,8 +1,8 @@
 from items import *
 
 #chemistry student (dynamite)
-Toby = {
-    "name": "Toby",
+toby = {
+    "name": "toby",
 
     "description": 
     """ A typical mad scienctist look with hair like Ablert Einstein,
@@ -73,11 +73,7 @@ Sally = {
 
     "speech": "HI YOU!!!!! COME JOIN THE PARTY!!!",
 
-<<<<<<< HEAD
-    "items": [brain]
-=======
-    "items": [],
->>>>>>> 1e22ba849dea48383dab690720e801c59261eddf
+    "items": [item_brain],
 
     "take": False
 }
@@ -115,16 +111,11 @@ Fluffy = {
 
 
 everyone = {
-	"Toby" : Toby,
-<<<<<<< HEAD
+	"toby" : toby,
 	"Fluffy" : Fluffy,
     "Jill" : Jill,
     "Eric" : Eric,
     "David" : David,
     "Sally" : Sally,
     "Maypac" : Maypac
-
-=======
-	"Fluffy" : Fluffy
->>>>>>> 1e22ba849dea48383dab690720e801c59261eddf
 }
