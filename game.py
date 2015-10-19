@@ -200,6 +200,9 @@ def print_menu(exits, room_items, inv_items):
     for item  in inv_items:
         print("DROP " + item["id"].upper() + " to drop " + item["name"])
 
+    for person in current_room["people"]:
+        print("TALK " + person["name"].upper()+ " to talk to " +person["name"])
+
     print("What do you want to do?")
 
     # Print take and drop actions   
