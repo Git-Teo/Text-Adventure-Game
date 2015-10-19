@@ -68,12 +68,12 @@ Sally = {
     "name": "Sally",
 
     "description":
-    """ Friendly, loves to socialize and meeting new people. Sometiems 
-    maybe a little too enthusiastic.""",
+    """ Sally is medical student, she's friendly, loves to socialize and meeting new people. Sometiems 
+    maybe a little too enthusiastic and a little weird.""",
 
     "speech": "HI YOU!!!!! COME JOIN THE PARTY!!!",
 
-    "items": []
+    "items": [brain]
 
     "take": False
 }
@@ -112,6 +112,11 @@ Fluffy = {
 
 everyone = {
 	"Toby" : Toby,
-	"Fluffy" : Fluffy
+	"Fluffy" : Fluffy,
+    "Jill" : Jill,
+    "Eric" : Eric,
+    "David" : David,
+    "Sally" : Sally,
+    "Maypac" : Maypac
 
 }
