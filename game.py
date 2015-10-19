@@ -425,6 +425,16 @@ def Check_win_condition():
 # This is the entry point of our program
 def main():
 
+    print("""
+88      a8P  88 88          88                 88   ,ad8888ba, 8b        d8  
+88    ,88'   88 88          88                 88  d8"'    `"8b Y8,    ,8P   
+88  ,88"     88 88          88                 88 d8'        `8b Y8,  ,8P    
+88,d88'      88 88          88                 88 88          88  "8aa8"     
+8888"88,     88 88          88                 88 88          88   `88'      
+88P   Y8b    88 88          88                 88 Y8,        ,8P    88       
+88     "88,  88 88          88         88,   ,d88  Y8a.    .a8P     88       
+88       Y8b 88 88888888888 88888888888 "Y8888P"    `"Y8888Y"'      88""")
+
     # Main game loop
     while True:
         # Display game status (room description, inventory etc.)
