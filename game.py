@@ -232,9 +232,6 @@ def enough_space(item):
         return False
     else:
         return True
- 
-
-
 
 
 def execute_go(direction):
@@ -376,23 +373,6 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
-def check_weight(new_item):
-    total_mass = 0
-    i = 0
-
-    for item in inventory:
-        total_mass += inventory[i]["mass"]
-        i += 1
-
-    if total_mass + new_item["mass"] > 10: #kilograms
-        print("You are over the weight limit! You cannot pick up that item.")
-        return False
-    else:
-        return True
-    #if item_mass > 3: #kilograms
-    #   
-    #   item_id = input("Type the ID of an item to drop.")
-    #   execute_drop(item_id)
 
 def Check_win_condition():
     return False #temp
