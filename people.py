@@ -111,6 +111,7 @@ Fluffy = {
 }
 
 everyone = {
-	"Toby" : Toby
+	"Toby" : Toby,
+	"Fluffy" : Fluffy
 
 }
