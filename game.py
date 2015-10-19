@@ -1,3 +1,4 @@
+import random, string
 
 from map import rooms
 from player import *
@@ -5,10 +6,34 @@ from items import *
 from gameparser import *
 
 def is_drunk():
-    if item_vodka["used"] == True:
-        drunk = True
-    else:
-        drunk = False
+    # waiting for using items code to finish
+    pass
+    #global drunk
+    #drunk = True
+
+def drunk_spelling(s):
+    """ This function takes a string and randomly replaces some of 
+        the vowels with other vowels. """
+    output = ""
+    vowels = ["e", "i", "o", "u", "a"]
+    for char in s:
+        #random.random() returns a random float between 0 and 1
+        #so there is a 35% chance of this if being true if the letter is a vowel
+        if char in vowels and random.random() < 0.5:
+            rand_vowel = random.choice(vowels)
+
+            #makes the new vowel the same case as the old vowel
+            if char in string.ascii_uppercase:
+                output += rand_vowel.upper()
+            else:
+                output += rand_vowel
+        #if its not a vowel, add it straight to the output
+        else: 
+            output += char
+
+    return output
+
+
 
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
@@ -133,7 +158,7 @@ def print_room(room):
     rn = room["name"].upper()
     if drunk:
         rn = drunk_spelling(rn)
-    print(r)
+    print(rn)
     print()
 
     # Display room description
@@ -336,6 +361,7 @@ def execute_drop(item_id, where):
     print(item_id.upper()+ " is not in your inventory")
     return
 
+
 def execute_talk(person, where):
 
     for ppl in where["people"]:
@@ -450,6 +476,7 @@ def main():
     # Main game loop
     while True:
         # Display game status (room description, inventory etc.)
+        is_drunk()
         print_room(current_room)
         print_inventory_items(inventory)
 
