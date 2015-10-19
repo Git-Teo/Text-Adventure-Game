@@ -207,6 +207,23 @@ def print_menu(exits, room_items, inv_items):
 
     # Print take and drop actions   
 
+def print_speech_menu(person, inv):
+    while user_input != "ignore":
+        for item in inv:
+            print("GIVE " +item["id"].upper()+ " to give " +item["id"]+ " to " +person["name"])
+
+        for item in person["items"]:
+            print("TAKE " +item["id"].upper()+ " to take " +item["name"]+" from " +person["name"])
+
+        print("IGNORE to exit speech")
+        print("What do you want to do?")
+
+        user_input = input("> ")
+        user_input = normalise_input(user_input)
+        if user_input[0] != "ignore":
+            execute_command(user_input, person)
+
+
 
 
 def is_valid_exit(exits, chosen_exit):
@@ -279,7 +296,7 @@ def execute_take(item_id, where):
         print(where["name"]+ " does not have this item")
     return
 
-def execute_drop(item_id):
+def execute_drop(item_id, where):
     """This function takes an item_id as an argument and moves this item from the
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
@@ -287,7 +304,7 @@ def execute_drop(item_id):
     i = 0
     for item in inventory:
         if item_id == inventory[i]["id"]:
-            current_room["items"].append(item)
+            where["items"].append(item)
             del inventory[i]
             print(item_id.upper()+ " has been dropped")
             return
@@ -301,7 +318,7 @@ def execute_talk(person):
     for ppl in people:
         if person == ppl[i]["name"].lower():   
             print(person["speech"])
-            print_speech_menu()
+            print_speech_menu(person, inventory)
             return
         i += 1
 
@@ -310,7 +327,7 @@ def execute_talk(person):
 
     
 
-def execute_command(command):
+def execute_command(command, where):
     """This function takes a command (a list of words as returned by
     normalise_input) and, depending on the type of action (the first word of
     the command: "go", "take", or "drop"), executes either execute_go,
@@ -327,13 +344,13 @@ def execute_command(command):
 
     elif command[0] == "take":
         if len(command) > 1:
-            execute_take(command[1], current_room)
+            execute_take(command[1], where)
         else:
             print("Take what?")
 
     elif command[0] == "drop":
         if len(command) > 1:
-            execute_drop(command[1])
+            execute_drop(command[1], where)
         else:
             print("Drop what?")
 
@@ -410,7 +427,7 @@ def main():
         command = menu(current_room["exits"], current_room["items"], inventory)
 
         # Execute the player's command
-        execute_command(command)
+        execute_command(command, current_room)
         
         if Check_win_condition():
             break
