@@ -9,7 +9,7 @@ room_your_room = {
 
     "exits": {"south": "Hallway", "east": "Chem room"},
 
-    "items": [item_biscuits, item_handbook, item_pen],
+    "items": [],
 
     "people": []
 }
