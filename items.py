@@ -50,7 +50,7 @@ item_club_key = {
 
     "name": "a key with a club symbol on it",
 
-    "description": "This key has a club symbol on it. You recall seeing this symbol somewhere before..."
+    "description": "This key has a club symbol on it. You recall seeing this symbol somewhere before...",
 
     "mass": 0.7
 }
@@ -80,7 +80,7 @@ item_brain = {
     
     "name": "a human brain",
 
-    "description": "Why not?"
+    "description": "Why not?",
 
     "mass": 3 
 }
@@ -90,7 +90,7 @@ item_dynamite = {
     
     "name": "a stick of dynamite",
 
-    "description": "A stick of homemade dynamite. You knew your flatmate was up to something in their room."
+    "description": "A stick of homemade dynamite. You knew your flatmate was up to something in their room.",
 
     "mass": 3.5
 }
@@ -100,7 +100,7 @@ item_saw = {
     
     "name": "a saw",
 
-    "description": "A massive saw. You could probably could cut a hole through anything with this."
+    "description": "A massive saw. You could probably could cut a hole through anything with this.",
 
     "mass": 5
 }
