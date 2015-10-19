@@ -10,3 +10,7 @@ Toby = {
 
     "items": []
 }
+
+everyone = {
+	"Toby" : Toby
+}

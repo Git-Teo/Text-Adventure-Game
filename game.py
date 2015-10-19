@@ -4,6 +4,7 @@ from map import rooms
 from player import *
 from items import *
 from gameparser import *
+from people import *
 
 
 
@@ -220,21 +221,19 @@ def print_menu(exits, room_items, inv_items):
     for direction in exits:
         # Print the exit name and where it leads to
         print_exit(direction, exit_leads_to(exits, direction))
-
-    #
-    # COMPLETE ME!
-    #
-    
-    print("What do you want to do?")
-
-    # Print take and drop actions   
+        # Print take and drop actions   
     for item in room_items:
         print("TAKE " + item["id"].upper() + " to take " + item["name"])
 
     for item  in inv_items:
         print("DROP " + item["id"].upper() + " to drop " + item["name"])
 
+    for people in current_room["people"]:
+        print("TALK " + people["name"].upper() + " to talk to " + people["name"])
+    
+    print("What do you want to do?")
 
+    
 
 def is_valid_exit(exits, chosen_exit):
     """This function checks, given a dictionary "exits" (see map.py) and
@@ -285,7 +284,7 @@ def execute_go(direction):
     return
 
 
-def execute_take(item_id):
+def execute_take(item_id, where):
     """This function takes an item_id as an argument and moves this item from the
     list of items in the current room to the player's inventory. However, if
     there is no such item in the room, this function prints
@@ -293,17 +292,21 @@ def execute_take(item_id):
     """
 
     i = 0
-    for item in current_room["items"]:
-        if (item_id == current_room["items"][i]["id"]):
+    for item in where["items"]:
+        if (item_id == where["items"][i]["id"]):
             if enough_space(item):
                 inventory.append(item)
-                del current_room["items"][i]
+                del where["items"][i]
                 print(item_id.upper()+ " has been taken")
                 return
             else:
                 print("You cannot take this item, too much weight")
         i += 1
-    print(item_id.upper()+ " is not in this room")
+
+    if where == current_room:
+        print(item_id.upper()+ " is not in this room")
+    else: 
+        print(where["name"]+ " does not have this item")
     return
 
 def execute_drop(item_id):
@@ -322,7 +325,14 @@ def execute_drop(item_id):
     print(item_id.upper()+ " is not in your inventory")
     return
 
+def execute_talk(person):
 
+    for ppl in people:
+        if person == ppl[i]["name"].lower():
+            current_room["items"].append(item)
+            del inventory[i]
+            print(item_id.upper()+ " has been dropped")
+            return 
     
 
 def execute_command(command):
@@ -343,7 +353,7 @@ def execute_command(command):
 
     elif command[0] == "take":
         if len(command) > 1:
-            execute_take(command[1])
+            execute_take(command[1], current_room)
         else:
             print("Take what?")
 
@@ -352,6 +362,13 @@ def execute_command(command):
             execute_drop(command[1])
         else:
             print("Drop what?")
+
+    elif command[0] == "talk":
+        if len(command) > 1:
+            execute_talk(command[1])
+        else:
+            print("Talk to who?")
+
 
     else:
         print("This makes no sense.")
@@ -401,6 +418,8 @@ def check_weight():
         print("You are over the weight limit! You must drop an item.")
         item_id = input("Type the ID of an item to drop.")
         execute_drop(item_id)
+
+
 def Check_win_condition():
     all_items = [item_id, item_handbook, item_laptop, item_money, item_pen, item_biscuits]
     
