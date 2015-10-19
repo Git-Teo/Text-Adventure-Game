@@ -24,7 +24,7 @@ item_broom = {
 
 item_heart_key = {
     #used to open one of your flatmates rooms
-    "id": "heart key",
+    "id": "heartkey",
 
     "name": "a key with a heart symbol on it",
 
@@ -35,7 +35,7 @@ item_heart_key = {
 
 item_spade_key = {
     #used to open your other flatmates room
-    "id": "spade key",
+    "id": "spadekey",
 
     "name": "a key with a spade symbol on it",
 
@@ -46,7 +46,7 @@ item_spade_key = {
 
 item_club_key = {
     #used to open the door to the utility room with the power breaker inside
-    "id": "club key",
+    "id": "clubkey",
 
     "name": "a key with a club symbol on it",
 
@@ -105,3 +105,28 @@ item_saw = {
     "mass": 5
 }
 
+<<<<<<< HEAD
+item_vodka = {
+    "id": "vodka",
+    
+    "name": "a bottle of vodka",
+
+    "description": "  ",
+
+    "mass": 5,
+
+    "used" : False
+}
+
+=======
+#temp
+item_vodka = {
+    "id": "vodka",
+    
+    "name": "vodka",
+
+    "description": "A massive saw. You could probably could cut a hole through anything with this.",
+
+    "mass": 5
+}
+>>>>>>> b17b990b14c6efdec5d4f3e19210959b92dd2213

@@ -41,7 +41,7 @@ Eric = {
 
     "speech": "Everyday I'm shuffling!!!!",
 
-    "items": []
+    "items": [],
 
     "take": False
 }
@@ -107,3 +107,10 @@ Fluffy = {
     "take": False
 }
 
+
+}
+
+everyone = {
+	"Toby" : Toby
+
+}

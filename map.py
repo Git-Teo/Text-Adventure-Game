@@ -15,7 +15,7 @@ room_your_room = {
 }
 
 room_chem_room = {
-    "name": "Your-roommate-who-studys-Chemistry's room",
+    "name": "Chemistry flatmate's room",
 
     "description":
     """ """,
@@ -28,7 +28,7 @@ room_chem_room = {
 }
 
 room_comsci_room = {
-    "name": "Your-roommate-who-studys-computer-science-and-is-s room",
+    "name": "Comsci flatmate's room",
 
     "description":
     """ """,
@@ -122,10 +122,10 @@ rooms = {
     "Your room": room_your_room,
     "Hallway": room_hallway,
     "Party house": room_party_house,
-    "Your-roommate-who-studys-computer-science": room_comsci_room,
-    "Your-roommate-who-studys-Chemistry's room": room_chem_room,
+    "Comsci room": room_comsci_room,
+    "Chem room": room_chem_room,
     "Security office": room_security_office,
-    "Utility office": room_utility_room,
+    "Utility room": room_utility_room,
     "Street": room_street,
     "Kitchen" : room_kitchen
 
