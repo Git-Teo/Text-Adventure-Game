@@ -1,63 +1,107 @@
-item_id = {
-    "id": "id",
+item_earplugs = {
+    "id": "earplugs",
 
-    "name": "id card",
+    "name": "earplugs",
 
     "description":
-    """You new shiny student ID card. Expires 1 June 2017.
-You wonder why they have printed a suicide hotline number on it?...""",
+
+    "Your trusty earplugs from Boots, they were once a nice purple colour but are now coated in layers of earwax. You should probably wash these.",
     
     "mass": 0.3
 }
 
-item_laptop = {
-    "id": "laptop",
+item_broom = {
+    "id": "broom",
 
-    "name": "laptop",
+    "name": "broom",
 
     "description":
-    "It has seen better days. At least it has a WiFi card!",
+
+    "Something about using it to bang the ceiling",
 
     "mass": 2
 }
 
-item_money = {
-    "id": "money",
+item_heart_key = {
+    #used to open one of your flatmates rooms
+    "id": "heart key",
 
-    "name": "money",
+    "name": "a key with a heart symbol on it",
 
-    "description":
-    "This wad of cash is barely enough to pay your tuition fees.",
+    "description": "This has a heart symbol on it. You recall seeing this symbol somewhere before",
 
     "mass": 0.5
 }
 
-item_biscuits = {
-    "id": "biscuits",
+item_spade_key = {
+    #used to open your other flatmates room
+    "id": "spade key",
 
-    "name": "a pack of biscuits",
+    "name": "a key with a spade symbol on it",
 
-    "description": "A pack of biscuits.",
+    "description": "This key has a spade symbol on it. You recall seeing this symbol somewhere before...",
 
     "mass": 0.6
 }
 
-item_pen = {
-    "id": "pen",
-    
-    "name": "a pen",
+item_club_key = {
+    #used to open the door to the utility room with the power breaker inside
+    "id": "club key",
 
-    "description": "A basic ballpoint pen.",
+    "name": "a key with a club symbol on it",
+
+    "description": "This key has a club symbol on it. You recall seeing this symbol somewhere before..."
 
     "mass": 0.7
 }
 
-item_handbook = {
-    "id": "handbook",
+item_phone = {
+    "id": "phone",
     
-    "name": "a student handbook",
+    "name": "phone",
 
-    "description": "This student handbook explains everything. Seriously.",
+    "description": "Your iPhone 6+ Edge Galaxy HTC Xperia 9000. There's a large crack in the screen from that time you dropped it when you were on the toilet.",
 
-    "mass": 1
+    "mass": 0.7
 }
+
+item_water = {
+    "id": "water",
+    
+    "name": "a bottle of water",
+
+    "description": "A big 2 litre bottle of water, you consider pouring this on the people talking and smoking right outside of your window.",
+
+    "mass": 2
+}
+
+item_brain = {
+    "id": "brain",
+    
+    "name": "a human brain",
+
+    "description": "Why not?"
+
+    "mass": 3 
+}
+
+item_dynamite = {
+    "id": "dynamite",
+    
+    "name": "a stick of dynamite",
+
+    "description": "A stick of homemade dynamite. You knew your flatmate was up to something in their room."
+
+    "mass": 3.5
+}
+
+item_saw = {
+    "id": "saw",
+    
+    "name": "a saw",
+
+    "description": "A massive saw. You could probably could cut a hole through anything with this."
+
+    "mass": 5
+}
+

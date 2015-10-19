@@ -24,16 +24,20 @@ def list_of_items(items):
     'money, a student handbook, laptop'
 
     """
-    s = ""
-    count = 0
-    i = 0
+    #Create a list of items
+    item_list = ""
+
+    #Iterate through item dictionary
     for item in items:
-        if count >= 1:
-            s += ", "
-        s += items[i]["name"]
-        count += 1
-        i += 1
-    return s
+        #If this is the first item in the list, add it to the list
+        if item_list == "":
+            item_list = item_list + str(item["name"])
+        #If it's not the first item, add it to the list 
+        #with a comma and a space before it to get the desired format.
+        else:
+            item_list = item_list + (", " + str(item["name"]))
+    return item_list
+        
 
 
 def print_room_items(room):
@@ -58,11 +62,13 @@ def print_room_items(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
 
     """
-    if list_of_items(room["items"]) != "":
-        print("There is " + list_of_items(room["items"]) + " here.")
-        print()
+    #No items, no output
+    if not room["items"]:
+        return
+    #If items, print in desired format using the list_of_items function
     else:
-        return 
+        print("There is " + list_of_items(room["items"]) + " here.")
+        print("")
     
 
 
@@ -76,10 +82,13 @@ def print_inventory_items(items):
     <BLANKLINE>
 
     """
-    print("You have " +list_of_items(items)+ ".")
-    print()
-    
-
+    #If there are no items, no output
+    if not items:
+        return
+    #Else print items in format using list_of_items
+    else:
+        print("You have " + list_of_items(items) + ".")
+        print("")
 
 def print_room(room):
     """This function takes a room as an input and nicely displays its name
@@ -131,10 +140,16 @@ def print_room(room):
     print()
     print(room["name"].upper())
     print()
+
     # Display room description
     print(room["description"])
     print()
+
+    # Print items using previously defined functions
     print_room_items(room)
+
+
+
     #
     # COMPLETE ME!
     #
@@ -199,7 +214,6 @@ def print_menu(exits, room_items, inv_items):
     DROP MONEY to drop your money.
     What do you want to do?
 
-
     """
     print("You can:")
     # Iterate over available exits
@@ -207,13 +221,19 @@ def print_menu(exits, room_items, inv_items):
         # Print the exit name and where it leads to
         print_exit(direction, exit_leads_to(exits, direction))
 
-    for item in room_items:
-        print("TAKE " +item["id"].upper()+ " to take your " +item["name"])
-
-    for item in inv_items:
-        print("DROP " +item["id"].upper()+ " to drop your " +item["name"])
+    #
+    # COMPLETE ME!
+    #
     
     print("What do you want to do?")
+
+    # Print take and drop actions   
+    for item in room_items:
+        print("TAKE " + item["id"].upper() + " to take " + item["name"])
+
+    for item  in inv_items:
+        print("DROP " + item["id"].upper() + " to drop " + item["name"])
+
 
 
 def is_valid_exit(exits, chosen_exit):
@@ -254,6 +274,12 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
+
+    if is_valid_exit(current_room["exits"], direction):
+        move(current_room["exits"], direction)
+    else:
+        print("You cannot go there.")
+
     global current_room
     if is_valid_exit(current_room["exits"], direction):
         current_room = rooms[current_room["exits"][direction]]
@@ -269,6 +295,16 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
+    for item in current_room["items"]:
+        if item_id == item["id"]:
+            inventory.append(item)
+            current_room["items"].remove(item)
+            return
+
+    print("You cannot take that.") 
+
+
+
     
     i = 0
     for item in current_room["items"]:
@@ -289,6 +325,11 @@ def execute_drop(item_id):
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
+    for item in inventory:
+        if item_id == item["id"]:
+            inventory.remove(item)
+            current_room["items"].append(item)
+            return
     i = 0
     for item in inventory:
         if item_id == inventory[i]["id"]:
@@ -300,8 +341,8 @@ def execute_drop(item_id):
     print(item_id.upper()+ " is not in your inventory")
     return
 
+    print("You cannot take that.") 
 
-    
     
 
 def execute_command(command):
@@ -373,6 +414,13 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
+def check_weight():
+    for item_mass in inventory:
+        item_mass = item_mass + inventory["mass"]
+    if item_mass > 3: #kilograms
+        print("You are over the weight limit! You must drop an item.")
+        item_id = input("Type the ID of an item to drop.")
+        execute_drop(item_id)
 def Check_win_condition():
     all_items = [item_id, item_handbook, item_laptop, item_money, item_pen, item_biscuits]
     
@@ -395,6 +443,8 @@ def main():
 
         # Execute the player's command
         execute_command(command)
+        #Check if weight is under 3kg
+        check_weight()
 
         if Check_win_condition():
             break
