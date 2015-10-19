@@ -5,7 +5,11 @@ from player import *
 from items import *
 from gameparser import *
 
-
+def is_drunk():
+    if item_vodka["used"] == True:
+        drunk = True
+    else:
+        drunk = False
 
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
@@ -67,7 +71,10 @@ def print_room_items(room):
         return
     #If items, print in desired format using the list_of_items function
     else:
-        print("There is " + list_of_items(room["items"]) + " here.")
+        s = "There is " + list_of_items(room["items"]) + " here."
+        if drunk:
+            s = drunk_spelling(s)
+        print(s)
         print("")
     
 
@@ -87,7 +94,10 @@ def print_inventory_items(items):
         return
     #Else print items in format using list_of_items
     else:
-        print("You have " + list_of_items(items) + ".")
+        s = "You have " + list_of_items(items) + "."
+        if drunk:
+            s = drunk_spelling(s)
+        print(s)
         print("")
 
 def print_room(room):
@@ -138,11 +148,17 @@ def print_room(room):
     """
     # Display room name
     print()
-    print(room["name"].upper())
+    rn = room["name"].upper()
+    if drunk:
+        rn = drunk_spelling(rn)
+    print(r)
     print()
 
     # Display room description
-    print(room["description"])
+    rd = room["description"]
+    if drunk:
+        rd = drunk_spelling(rd)
+    print(rd)
     print()
 
     # Print items using previously defined functions

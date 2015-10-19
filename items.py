@@ -105,7 +105,7 @@ item_saw = {
     "mass": 5
 }
 
-<<<<<<< HEAD
+
 item_vodka = {
     "id": "vodka",
     
@@ -118,15 +118,3 @@ item_vodka = {
     "used" : False
 }
 
-=======
-#temp
-item_vodka = {
-    "id": "vodka",
-    
-    "name": "vodka",
-
-    "description": "A massive saw. You could probably could cut a hole through anything with this.",
-
-    "mass": 5
-}
->>>>>>> b17b990b14c6efdec5d4f3e19210959b92dd2213
