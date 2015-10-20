@@ -409,6 +409,10 @@ def execute_use(item_id, where):
         if item_usable(item, where) and item_id == item["id"]:
             item["used"] = where
             del inventory[i]
+            if where in everyone:
+                print()
+                print(where["item_used_speech"])
+                print()
             return
         i+=1
     print(item_id.upper()+ " cannot be used as it has no effect")
