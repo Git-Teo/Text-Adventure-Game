@@ -386,7 +386,9 @@ def execute_drop(item_id, where):
 
 def execute_talk(person, where):
     for ppl in where["people"]:
-        if person == ppl["name"]: 
+        if person == ppl["name"]:
+            print()
+            print(ppl["description"])
             print()  
             print(ppl["speech"])
             print_speech_menu(ppl, inventory)
@@ -514,7 +516,7 @@ def Check_win_condition():
         return True
 
     elif current_room == room_utility_room:
-        print ("With Fluffy’s exceptional picklock skills, Yu was able to get into the utility room.Yu turned the power off and managed to get sufficient sleep and aced the exam.")
+        print ("With Fluffys exceptional picklock skills, Yu was able to get into the utility room.Yu turned the power off and managed to get sufficient sleep and aced the exam.")
         true_ending = True
         return True 
 
