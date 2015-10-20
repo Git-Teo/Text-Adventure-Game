@@ -162,7 +162,7 @@ def print_room(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
     # Display room name
-    print("----------------------------------------------------------------------------------------------")
+    print("--------------------------------------------------------------------------------")
     print()
     rn = room["name"].upper()
     if drunk:
@@ -245,13 +245,16 @@ def print_menu(exits, room_items, inv_items):
         print_exit(direction, exit_leads_to(exits, direction))
 
     for item in room_items:
-        print("TAKE " + item["id"].upper() + " to take " + item["name"])
+        print("TAKE " +item["id"].upper()+ " to take " +item["name"])
 
     for item  in inv_items:
-        print("DROP " + item["id"].upper() + " to drop " + item["name"])
+        print("DROP " +item["id"].upper()+ " to drop " +item["name"])
 
     for person in current_room["people"]:
-        print("TALK " + person["name"].upper()+ " to talk to " +person["name"])
+        print("TALK " +person["name"].upper()+ " to talk to " +person["name"])
+
+    for item in inv_items:
+        print("USE " +item["id"].upper()+ " to use " +item["name"])
 
     print("What do you want to do?")
 
@@ -267,7 +270,11 @@ def print_speech_menu(person, inv):
         for item in person["items"]:
             print("TAKE " +item["id"].upper()+ " to take " +item["name"]+" from " +person["name"])
 
+        for item in inv_items:
+            print("USE " +item["id"].upper()+ " to use " +item["name"] + " on " +person["name"])
+
         print("IGNORE to exit speech")
+        print()
         print("What do you want to do?")
 
         talk_input = input("> ")
@@ -309,6 +316,16 @@ def enough_space(item):
     else:
         return True
 
+def item_usable(item, where):
+    if where == current_room:
+        if item in self_usable_items:
+            return True
+    elif item in where["usable_items"]:
+        return True
+    else:
+        return False
+
+
 
 def execute_go(direction):
     """This function, given the direction (e.g. "south") updates the current room
@@ -337,7 +354,7 @@ def execute_take(item_id, where):
 
     i = 0
     for item in where["items"]:
-        if (item_id == where["items"][i]["id"]):
+        if (item_id == item["id"]):
             if enough_space(item):
                 inventory.append(item)
                 del where["items"][i]
@@ -361,7 +378,7 @@ def execute_drop(item_id, where):
     """
     i = 0
     for item in inventory:
-        if item_id == inventory[i]["id"]:
+        if item_id == item["id"]:
             where["items"].append(item)
             del inventory[i]
             if where == current_room:
@@ -377,7 +394,6 @@ def execute_drop(item_id, where):
 
 
 def execute_talk(person, where):
-
     for ppl in where["people"]:
         if person == ppl["name"]: 
             print()  
@@ -388,6 +404,16 @@ def execute_talk(person, where):
     print(person+ " is not in this room")
     return
 
+def execute_use(item_id, where):
+    i=0
+    for item in inventory:
+        if item_usable(item, where) and item_id == item["id"]:
+            item["used"] = where
+            del inventory[i]
+            return
+        i+=1
+    print(item_id.upper()+ " cannot be used as it has no effect")
+    return
 
     
 
@@ -418,11 +444,18 @@ def execute_command(command, where):
         else:
             print("Drop what?")
 
-    elif command[0] == "talk":
+    elif command[0] == "talk" and where == current_room:
         if len(command) > 1:
             execute_talk(command[1], where)
         else:
             print("Talk to who?")
+
+    elif command[0] == "use":
+        if len(command) > 1:
+            execute_use(command[1], where)
+        else:
+            print("Use what?")
+
     elif command[0] == "exit":
         if len(command) == 1:
             exit()

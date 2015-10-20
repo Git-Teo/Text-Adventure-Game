@@ -13,7 +13,11 @@ toby = {
 
     "items": [item_dynamite, item_vodka],
 
-    "take": False
+    "take": False,
+
+    "item_used_speech": "",
+
+    "usable_items": []
 }
 
 #antisocial roommate comscience
@@ -29,7 +33,11 @@ jill = {
 
     "items": [],
 
-    "take": False
+    "take": False,
+
+    "item_used_speech": "",
+
+    "usable_items": []
 }
 
 #party people 1
@@ -43,7 +51,11 @@ eric = {
 
     "items": [],
 
-    "take": False
+    "take": False,
+
+    "item_used_speech": "",
+
+    "usable_items": []
 }
 
 
@@ -60,7 +72,11 @@ david = {
 
     "items": [],
 
-    "take": False
+    "take": False,
+
+    "item_used_speech": "",
+
+    "usable_items": []
 }
 
 #party people 3
@@ -75,7 +91,11 @@ sally = {
 
     "items": [item_brain],
 
-    "take": False
+    "take": False,
+
+    "item_used_speech": "",
+
+    "usable_items": []
 }
 
 #guard to the party
@@ -90,7 +110,11 @@ maypac = {
 
     "items": [],
 
-    "take": False
+    "take": False,
+
+    "item_used_speech": "",
+
+    "usable_items": []
 }
 
 #zombie
@@ -104,7 +128,11 @@ fluffy = {
 
     "items": [],
 
-    "take": False
+    "take": False,
+
+    "item_used_speech": "",
+
+    "usable_items": []
 }
 
 
