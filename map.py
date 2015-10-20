@@ -12,7 +12,7 @@ room_your_room = {
 
     "items": [],
 
-    "people": [toby]
+    "people": []
 }
 
 room_chem_room = {
@@ -27,7 +27,7 @@ room_chem_room = {
 
     "items": [item_dynamite],
 
-    "people": []
+    "people": [toby]
 }
 
 room_comsci_room = {
@@ -41,7 +41,7 @@ room_comsci_room = {
 
     "items": [item_saw],
 
-    "people": []
+    "people": [Jill]
 }
 
 room_hallway_west = {
@@ -55,7 +55,7 @@ room_hallway_west = {
 
     "items": [item_heart_key],
 
-    "people": []
+    "people": [Maypac]
 }
 
 room_hallway_east = {
@@ -97,7 +97,7 @@ room_party_house = {
 
     "items": [item_spade_key, item_vodka],
 
-    "people": []
+    "people": [Eric, David, Sally]
 }
 
 room_street = {
@@ -111,7 +111,7 @@ room_street = {
 
     "items": [],
 
-    "people": []
+    "people": [Fluffy]
 }
 
 room_security_office = {
