@@ -9,8 +9,12 @@ from sys import exit
 def is_drunk():
     # waiting for using items code to finish
     pass
-    #global drunk
-    #drunk = True
+
+    #if vodka["used"]:
+    #   drunk = True
+
+    #if water["used"] and drunk = true:
+    #    drunk = false
 
 def drunk_spelling(s):
     """ This function takes a string and randomly replaces some of 
@@ -462,12 +466,32 @@ def move(exits, direction):
 def Check_win_condition():
     #Temp. Current win condition is to collect all items and drop in your room. Should we change this to a meaningful objective?
 
-    all_items = [item_earplugs, item_broom, item_heart_key, item_spade_key, item_club_key, item_phone, item_water, item_brain, item_dynamite, item_saw, item_vodka]
+    if item_dynamite in maypac["items"]:
+        return True
+        print ("dynamite given to guard, everyone blows up (or you could get arrested for having dynamite)")
+
+    elif current_room == room_utility_room:
+        return True
+        print ("true ending, you turn off power and go to sleep")
+
+    elif current_room == room_security_office and item_dynamite["used"] == "Security office":
+        return True
+        print("tried to use dynamite to blow open door, you blow yourself up")
+
+    elif current_room == room_security_office and item_saw["used"] == "Security office":
+        return True
+        print("tried to use saw to open door, door was electric and you electrocute youself and die")
+
+    elif current_room == room_street and (item_saw["used"] == room_street or item_dynamite["used"] == room_street):
+        return True
+        print("you die trying to fight the zombies")        
     
-    for item in all_items:
-        if not(item in rooms["Your room"]["items"]):
-            return False
-    return True
+    elif current_room == room_security_office and item_fluffy in inventory:
+        return True
+        print ("Guard shoots fluffy, you go to jail for having a pet zombie")
+
+
+
 
 # This is the entry point of our program
 def main():
