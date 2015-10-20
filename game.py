@@ -409,10 +409,15 @@ def execute_use(item_id, where):
     for item in inventory:
         if item_usable(item, where) and item_id == item["id"]:
             item["used"] = where
-            del inventory[i]
-            if where in everyone:
+            if not(item["reusable"]):
+                del inventory[i]
+            if where != current_room:
                 print()
                 print(where["item_used_speech"])
+                print()
+            else:
+                print()
+                print()
                 print()
             return
         i+=1

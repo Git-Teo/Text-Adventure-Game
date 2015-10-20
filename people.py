@@ -15,9 +15,9 @@ toby = {
 
     "take": False,
 
-    "item_used_speech": "",
+    "item_used_speech": "Good Call!",
 
-    "usable_items": []
+    "usable_items": [item_phone]
 }
 
 #antisocial roommate comscience

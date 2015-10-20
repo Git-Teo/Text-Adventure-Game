@@ -6,4 +6,4 @@ drunk = False
 # Start game at the reception
 current_room = rooms["Your room"]
 
-self_usable_items = []
+self_usable_items = [item_phone]
