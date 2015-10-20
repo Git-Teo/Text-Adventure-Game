@@ -7,9 +7,9 @@ from gameparser import *
 
 def is_drunk():
     # waiting for using items code to finish
-    pass
-    #global drunk
-    #drunk = True
+    # pass
+    global drunk
+    drunk = True
 
 def drunk_spelling(s):
     """ This function takes a string and randomly replaces some of 
