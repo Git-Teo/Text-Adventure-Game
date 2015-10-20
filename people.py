@@ -26,12 +26,12 @@ jill = {
 
     "description":
     """ Jill is as silent as silent night, doesn't really speak to anyone. 
-    She spends most of her time reading books and watching Friends and How I
+    She spends most of her time reading comic books and watching Friends and How I
      Met Your Mother. Aside from that, she knows her stuff about computers.""",
 
-    "speech": "It's you again Yu, i would talk to you but i don't want to. So, bye!",
+    "speech": "It's you again Yu, what is it now? take what you want and leave.",
 
-    "items": [],
+    "items": [item_hammer],
 
     "take": False,
 
@@ -114,7 +114,7 @@ maypac = {
 
     "item_used_speech": "",
 
-    "usable_items": []
+    "usable_items": [item_vodka]
 }
 
 #zombie
@@ -126,13 +126,30 @@ fluffy = {
 
     "speech": "Brrraaaaiinnnnssss, BBBRRaaaaIINNSss",
 
-    "items": [],
+    "items": [item_key],
 
     "take": False,
 
     "item_used_speech": "",
 
     "usable_items": []
+}
+
+my_friends_wall = {
+    "name": "wall",
+
+    "description":
+    """There seems to be brittle.""",
+
+    "speech": "Hello Im a Wall please dont hurt me!",
+
+    "items": [],
+
+    "take": False,
+
+    "item_used_speech": "For the night's watch! *honorable death*",
+
+    "usable_items": [item_hammer]
 }
 
 
@@ -145,5 +162,6 @@ everyone = {
     "eric" : eric,
     "david" : david,
     "sally" : sally,
-    "maypac" : maypac
+    "maypac" : maypac,
+    "wall" : my_friends_wall
 }

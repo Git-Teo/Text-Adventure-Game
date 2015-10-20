@@ -310,20 +310,57 @@ def enough_space(item):
     for i in inventory:
         total += i["mass"]
 
-    if (total+item["mass"] > 10):
+    if (total+item["mass"] > 100):
         print("You cannot pick up any more items!")
         return False
     else:
         return True
 
-def item_usable(item, where):
-    if where == current_room:
+def item_usable(item, on):
+    if on == current_room:
         if item in self_usable_items:
             return True
-    elif item in where["usable_items"]:
+    elif item in on["usable_items"]:
         return True
     else:
         return False
+
+def is_move_possible(next_room):
+    if next_room["locked"]:
+        return False
+    else:
+        return True
+
+def unlock_room():
+    if item_vodka["used"] == maypac:
+        rooms["Party house"]["locked"] = False 
+        print("") 
+        return
+    if item_fluffy["used"] == rooms["Utility room"] and item_fluffy["has_lockpicks"]:
+        rooms["Utility room"]["locked"] = False
+        print("") 
+        return
+    if item_heart_key["used"] == rooms["Comsci room"]:
+        rooms["Comsci room"]["locked"] = False
+        print("") 
+        return
+    if item_hammer["used"] == my_friends_wall:
+        rooms["Street"]["locked"] = False
+        rooms["Party house"]["exits"]["east"] = "Street"
+        my_friends_wall["speech"] = "It's not the fact I can't code, its just that I am a dead wall"
+        print("") 
+        return
+    if item_dynamite["used"] == rooms["Security office"]:
+        rooms["Security office"]["locked"] = False
+        print("") 
+        return
+    if item_fluffy["used"] == rooms["Security office"]:
+        rooms["Utility room"]["locked"] = False
+        print("") 
+        return
+
+
+
 
 
 
@@ -336,10 +373,12 @@ def execute_go(direction):
 
     global current_room
 
-    if is_valid_exit(current_room["exits"], direction):
+    if is_valid_exit(current_room["exits"], direction) and is_move_possible(rooms[current_room["exits"][direction]]):
         current_room = rooms[current_room["exits"][direction]]
         print("You have moved to " + current_room["name"] + ".")
         print()
+    elif is_valid_exit(current_room["exits"], direction):
+        print(rooms[current_room["exits"][direction]]["blocked_text"]) 
     else:
         print("You cannot go there.")
     return
@@ -404,21 +443,23 @@ def execute_talk(person, where):
     print(person+ " is not in this room")
     return
 
-def execute_use(item_id, where):
+def execute_use(item_id, on):
     i=0
     for item in inventory:
-        if item_usable(item, where) and item_id == item["id"]:
-            item["used"] = where
+        if item_usable(item, on) and item_id == item["id"]:
+            item["used"] = on
+            unlock_room()
             if not(item["reusable"]):
                 del inventory[i]
-            if where != current_room:
+            """if on != current_room:
                 print()
-                print(where["item_used_speech"])
+                print(on["item_used_speech"])
                 print()
             else:
                 print()
                 print()
                 print()
+            """
             return
         i+=1
     print(item_id.upper()+ " cannot be used as it has no effect")
@@ -460,7 +501,9 @@ def execute_command(command, where):
             print("Talk to who?")
 
     elif command[0] == "use":
-        if len(command) > 1:
+        if len(command) > 2:
+            execute_use(command[1], rooms[current_room["exits"][command[2]]])
+        elif len(command) > 1:
             execute_use(command[1], where)
         else:
             print("Use what?")
@@ -559,8 +602,9 @@ def main():
         print_inventory_items(inventory)
 
         # Show the menu with possible actions and ask the player
-        command = menu(current_room["exits"], current_room["items"], inventory)
 
+        command = menu(current_room["exits"], current_room["items"], inventory)
+        unlock_room()
         # Execute the player's command
         execute_command(command, current_room)
         

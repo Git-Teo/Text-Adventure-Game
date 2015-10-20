@@ -36,7 +36,7 @@ item_heart_key = {
 
     "name": "a key with a heart symbol on it",
 
-    "description": "This has a heart symbol on it. You recall seeing this symbol somewhere before",
+    "description": "This has a heart symbol on it. You recall seeing someone holding this key before",
 
     "mass": 0.5,
 
@@ -45,30 +45,15 @@ item_heart_key = {
     "reusable": False
 }
 
-item_spade_key = {
-    #used to open your other flatmates room
-    "id": "spadekey",
+item_key = {
+    #used to open one of your flatmates rooms
+    "id": "key",
 
-    "name": "a key with a spade symbol on it",
+    "name": "a key",
 
-    "description": "This key has a spade symbol on it. You recall seeing this symbol somewhere before...",
+    "description": "Seems like the key that one of the security officer was looking for",
 
-    "mass": 0.6,
-
-    "used": "",
-
-    "reusable": False
-}
-
-item_club_key = {
-    #used to open the door to the utility room with the power breaker inside
-    "id": "clubkey",
-
-    "name": "a key with a club symbol on it",
-
-    "description": "This key has a club symbol on it. You recall seeing this symbol somewhere before...",
-
-    "mass": 0.7,
+    "mass": 0.5,
 
     "used": "",
 
@@ -131,12 +116,12 @@ item_dynamite = {
     "reusable": False
 }
 
-item_saw = {
-    "id": "saw",
+item_hammer = {
+    "id": "hammer",
     
-    "name": "a saw",
+    "name": "Mjolnir",
 
-    "description": "A massive saw. You could probably could cut a hole through anything with this.",
+    "description": "A massive hammer named Mjolnir. You could probably could smash a hole through anything with this.",
 
     "mass": 5,
 
@@ -152,11 +137,11 @@ item_vodka = {
 
     "description": "  ",
 
-    "mass": 5,
+    "mass": 3,
 
     "used": "",
 
-    "reusable": False
+    "reusable": True
 }
 
 item_fluffy = {
@@ -166,7 +151,23 @@ item_fluffy = {
 
     "description": "brains?",
 
-    "mass": 5,
+    "mass": 0,
+
+    "used": "",
 
     "reusable": True
+}
+
+item_lockpick = {
+    "id": "lockpick",
+    
+    "name": "a lockpick",
+
+    "description": "Confiscated lockpick from the now knocked out security officer",
+
+    "mass": 2,
+
+    "used": "",
+
+    "reusable": False
 }
