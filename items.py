@@ -7,7 +7,9 @@ item_earplugs = {
 
     "Your trusty earplugs from Boots, they were once a nice purple colour but are now coated in layers of earwax. You should probably wash these.",
     
-    "mass": 0.3
+    "mass": 0.3,
+
+    "used": ""
 }
 
 item_broom = {
@@ -19,7 +21,9 @@ item_broom = {
 
     "Something about using it to bang the ceiling",
 
-    "mass": 2
+    "mass": 2,
+
+    "used": ""
 }
 
 item_heart_key = {
@@ -30,7 +34,9 @@ item_heart_key = {
 
     "description": "This has a heart symbol on it. You recall seeing this symbol somewhere before",
 
-    "mass": 0.5
+    "mass": 0.5,
+
+    "used": ""
 }
 
 item_spade_key = {
@@ -41,7 +47,9 @@ item_spade_key = {
 
     "description": "This key has a spade symbol on it. You recall seeing this symbol somewhere before...",
 
-    "mass": 0.6
+    "mass": 0.6,
+
+    "used": ""
 }
 
 item_club_key = {
@@ -52,7 +60,9 @@ item_club_key = {
 
     "description": "This key has a club symbol on it. You recall seeing this symbol somewhere before...",
 
-    "mass": 0.7
+    "mass": 0.7,
+
+    "used": ""
 }
 
 item_phone = {
@@ -62,7 +72,9 @@ item_phone = {
 
     "description": "Your iPhone 6+ Edge Galaxy HTC Xperia 9000. There's a large crack in the screen from that time you dropped it when you were on the toilet.",
 
-    "mass": 0.7
+    "mass": 0.7,
+
+    "used": ""
 }
 
 item_water = {
@@ -72,7 +84,9 @@ item_water = {
 
     "description": "A big 2 litre bottle of water, you consider pouring this on the people talking and smoking right outside of your window.",
 
-    "mass": 2
+    "mass": 2,
+
+    "used": ""
 }
 
 item_brain = {
@@ -82,7 +96,9 @@ item_brain = {
 
     "description": "Why not?",
 
-    "mass": 3 
+    "mass": 3,
+
+    "used": ""
 }
 
 item_dynamite = {
@@ -92,7 +108,9 @@ item_dynamite = {
 
     "description": "A stick of homemade dynamite. You knew your flatmate was up to something in their room.",
 
-    "mass": 3.5
+    "mass": 3.5,
+
+    "used": ""
 }
 
 item_saw = {
@@ -102,7 +120,9 @@ item_saw = {
 
     "description": "A massive saw. You could probably could cut a hole through anything with this.",
 
-    "mass": 5
+    "mass": 5,
+
+    "used": ""
 }
 
 item_vodka = {
@@ -113,5 +133,7 @@ item_vodka = {
     "description": "  ",
 
     "mass": 5,
+
+    "used": ""
 }
 
