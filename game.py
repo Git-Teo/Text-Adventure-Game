@@ -1,10 +1,11 @@
 import random, string
 
-from map import rooms
+from map import *
 from player import *
 from items import *
 from gameparser import *
 from sys import exit
+from people import *
 
 true_ending = ""
 
