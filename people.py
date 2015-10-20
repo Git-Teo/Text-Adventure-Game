@@ -9,7 +9,7 @@ toby = {
     who wears a lab coat 24/7. Toby is the blackmarket of chemicals
     and explosives.""",
 
-    "speech": "Oh hey there Yu, how's it going? Do you need anything?? *Wink wink*",
+    "speech": "'Oh hey there Yu, how's it going? Do you need anything?? *Wink wink*'",
 
     "items": [item_dynamite, item_vodka],
 
@@ -47,7 +47,7 @@ eric = {
     "description":
     """ If you look up party in a dictionary, you'd see his face.""",
 
-    "speech": "Everyday I'm shuffling!!!!",
+    "speech": "'Everyday I'm shuffling!!!!'",
 
     "items": [],
 
@@ -68,7 +68,7 @@ david = {
     gets drunk every week, last person you would want to 
     play drinking games with. """,
 
-    "speech": "Hmmmm??? Whhaaat?? *Hiccup* ",
+    "speech": "'Hmmmm??? Whhaaat?? *Hiccup*'",
 
     "items": [],
 
@@ -87,7 +87,7 @@ sally = {
     """ Sally is medical student, she's friendly, loves to socialize and meeting new people. Sometiems 
     maybe a little too enthusiastic and a little weird.""",
 
-    "speech": "HI YOU!!!!! COME JOIN THE PARTY!!!",
+    "speech": "'HI YOU!!!!! COME JOIN THE PARTY!!!'",
 
     "items": [item_brain],
 
@@ -106,7 +106,7 @@ maypac = {
     """ Tough guy, big in size and looks like he could knock anyone out
     with a single punch.""",
 
-    "speech": "Did you bring any drinks?",
+    "speech": "'Did you bring any drinks?'",
 
     "items": [],
 
@@ -124,7 +124,7 @@ fluffy = {
     "description":
     """Well, he's a zombie. Before he was turned, he was a thief.""",
 
-    "speech": "Brrraaaaiinnnnssss, BBBRRaaaaIINNSss",
+    "speech": "'Brrraaaaiinnnnssss, BBBRRaaaaIINNSss'",
 
     "items": [item_key],
 

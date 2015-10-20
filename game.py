@@ -9,15 +9,6 @@ from people import *
 
 true_ending = ""
 
-def is_drunk():
-    # waiting for using items code to finish
-    pass
-
-    #if vodka["used"]:
-    #   drunk = True
-
-    #if water["used"] and drunk = true:
-    #    drunk = false
 
 def drunk_spelling(s):
     """ This function takes a string and randomly replaces some of 
@@ -281,7 +272,7 @@ def print_speech_menu(person, inv):
         talk_input = normalise_input(talk_input)
 
         if talk_input[0] == "ignore":
-            return
+            return  
         else:
             execute_command(talk_input, person)
 
@@ -434,7 +425,9 @@ def execute_drop(item_id, where):
 
 def execute_talk(person, where):
     for ppl in where["people"]:
-        if person == ppl["name"]: 
+        if person == ppl["name"]:
+            print()
+            print(ppl["description"])
             print()  
             print(ppl["speech"])
             print_speech_menu(ppl, inventory)
@@ -443,12 +436,20 @@ def execute_talk(person, where):
     print(person+ " is not in this room")
     return
 
+
 def execute_use(item_id, on):
+    global drunk 
     i=0
     for item in inventory:
         if item_usable(item, on) and item_id == item["id"]:
             item["used"] = on
             unlock_room()
+
+            if item["id"] == "vodka":
+                drunk = True
+            if item["id"] == "water" and drunk == True:
+                drunk = False
+
             if not(item["reusable"]):
                 del inventory[i]
             """if on != current_room:
@@ -555,28 +556,31 @@ def Check_win_condition():
     global true_ending
 
     if item_dynamite in maypac["items"]:
-        print ("dynamite given to guard, everyone blows up (or you could get arrested for having dynamite)")
+        print ("Maypac is confused, didn’t think it was actual dynamite and sets it off! The dynamite blows up and kills everyone in the party including Yu.")
         return True
 
     elif current_room == room_utility_room:
-        print ("true ending, you turn off power and go to sleep")
+        print ("With Fluffys exceptional picklock skills, Yu was able to get into the utility room.Yu turned the power off and managed to get sufficient sleep and aced the exam.")
         true_ending = True
-        return True
+        return True 
 
     elif current_room == room_security_office and item_dynamite["used"] == "Security office":
         print("tried to use dynamite to blow open door, you blow yourself up")
         return True
 
     elif current_room == room_security_office and item_saw["used"] == "Security office":
-        print("tried to use saw to open door, door was electric and you electrocute youself and die")
+        print("Yu feeling cheeky, didn’t take the electric door sign seriously and used the saw to open the door. Yu felt like Zeus for a split second and a fried potato after that.")
         return True
 
     elif current_room == room_street and (item_saw["used"] == room_street or item_dynamite["used"] == room_street):
-        print("you die trying to fight the zombies")
+        if item_saw["used"]:
+            print("The saw was a slow weapon, by the time Yu managed to saw through an arm of a zombie, both the legs were already eaten. ")
+        else:
+            print("A portion of the zombies died. BUT, Yu not realising the amount of zombies on the street, a single dynamite was not enough to kill all the zombies. Just in a couple of minutes, Yu became supper for the zombies")
         return True        
     
     elif current_room == room_security_office and item_fluffy in inventory:
-        print ("Guard shoots fluffy, you go to jail for having a pet zombie")
+        print ("The security guard sees Fluffy and immediately takes out his gun and shoots Fluffy. Seeing Yu having a zombie as a pet is illegal, Yu was taken to jail for it.")
         return True
 
 
@@ -597,7 +601,6 @@ def main():
     # Main game loop
     while True:
         # Display game status (room description, inventory etc.)
-        is_drunk()
         print_room(current_room)
         print_inventory_items(inventory)
 
