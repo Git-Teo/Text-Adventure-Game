@@ -98,7 +98,7 @@ Fluffy = {
     "name": "Fluffy",
 
     "description":
-    """Well, he's a zombie.""",
+    """Well, he's a zombie. Before he was turned, he was a thief.""",
 
     "speech": "Brrraaaaiinnnnssss, BBBRRaaaaIINNSss",
 
