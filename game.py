@@ -270,7 +270,7 @@ def print_speech_menu(person, inv):
         for item in person["items"]:
             print("TAKE " +item["id"].upper()+ " to take " +item["name"]+" from " +person["name"])
 
-        for item in inv_items:
+        for item in inv:
             print("USE " +item["id"].upper()+ " to use " +item["name"] + " on " +person["name"])
 
         print("IGNORE to exit speech")
