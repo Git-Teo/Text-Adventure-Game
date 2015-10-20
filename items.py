@@ -137,3 +137,12 @@ item_vodka = {
     "used": ""
 }
 
+item_fluffy = {
+    "id": "fluffy",
+    
+    "name": "fluffy",
+
+    "description": "brains?",
+
+    "mass": 5,
+}

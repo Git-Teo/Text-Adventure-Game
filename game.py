@@ -6,12 +6,17 @@ from items import *
 from gameparser import *
 from sys import exit
 
+true_ending = ""
 
 def is_drunk():
     # waiting for using items code to finish
     pass
-    #global drunk
-    #drunk = True
+
+    #if vodka["used"]:
+    #   drunk = True
+
+    #if water["used"] and drunk = true:
+    #    drunk = false
 
 def drunk_spelling(s):
     """ This function takes a string and randomly replaces some of 
@@ -494,14 +499,34 @@ def move(exits, direction):
 
 
 def Check_win_condition():
-    #Temp. Current win condition is to collect all items and drop in your room. Should we change this to a meaningful objective?
+    global true_ending
 
-    all_items = [item_earplugs, item_broom, item_heart_key, item_spade_key, item_club_key, item_phone, item_water, item_brain, item_dynamite, item_saw, item_vodka]
+    if item_dynamite in maypac["items"]:
+        print ("dynamite given to guard, everyone blows up (or you could get arrested for having dynamite)")
+        return True
+
+    elif current_room == room_utility_room:
+        print ("true ending, you turn off power and go to sleep")
+        true_ending = True
+        return True
+
+    elif current_room == room_security_office and item_dynamite["used"] == "Security office":
+        print("tried to use dynamite to blow open door, you blow yourself up")
+        return True
+
+    elif current_room == room_security_office and item_saw["used"] == "Security office":
+        print("tried to use saw to open door, door was electric and you electrocute youself and die")
+        return True
+
+    elif current_room == room_street and (item_saw["used"] == room_street or item_dynamite["used"] == room_street):
+        print("you die trying to fight the zombies")
+        return True        
     
-    for item in all_items:
-        if not(item in rooms["Your room"]["items"]):
-            return False
-    return True
+    elif current_room == room_security_office and item_fluffy in inventory:
+        print ("Guard shoots fluffy, you go to jail for having a pet zombie")
+        return True
+
+
 
 # This is the entry point of our program
 def main():
@@ -531,17 +556,26 @@ def main():
         
         if Check_win_condition():
             break
-    print("""
-        8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
-         Y8,    ,8P d8"'    `"8b  88        88    `8b       d8b       d8' 88 8888b     88  
-          Y8,  ,8P d8'        `8b 88        88     "8,     ,8"8,     ,8"  88 88 `8b    88  
-           "8aa8"  88          88 88        88      Y8     8P Y8     8P   88 88  `8b   88  
-            `88'   88          88 88        88      `8b   d8' `8b   d8'   88 88   `8b  88  
-             88    Y8,        ,8P 88        88       `8a a8'   `8a a8'    88 88    `8b 88  
-             88     Y8a.    .a8P  Y8a.    .a8P        `8a8'     `8a8'     88 88     `8888  
-             88      `"Y8888Y"'    `"Y8888Y"'          `8'       `8'      88 88      `888 
-                                    
-                                    """)
+            if true_ending:
+                print("""
+                    8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
+                     Y8,    ,8P d8"'    `"8b  88        88    `8b       d8b       d8' 88 8888b     88  
+                      Y8,  ,8P d8'        `8b 88        88     "8,     ,8"8,     ,8"  88 88 `8b    88  
+                       "8aa8"  88          88 88        88      Y8     8P Y8     8P   88 88  `8b   88  
+                        `88'   88          88 88        88      `8b   d8' `8b   d8'   88 88   `8b  88  
+                         88    Y8,        ,8P 88        88       `8a a8'   `8a a8'    88 88    `8b 88  
+                         88     Y8a.    .a8P  Y8a.    .a8P        `8a8'     `8a8'     88 88     `8888  
+                         88      `"Y8888Y"'    `"Y8888Y"'          `8'       `8'      88 88      `888 
+                                                
+                                                """)
+            else:
+                 print("""____    ____  ______    __    __      __        ______        _______. _______ 
+                          \   \  /   / /  __  \  |  |  |  |    |  |      /  __  \      /       ||   ____|
+                           \   \/   / |  |  |  | |  |  |  |    |  |     |  |  |  |    |   (----`|  |__   
+                            \_    _/  |  |  |  | |  |  |  |    |  |     |  |  |  |     \   \    |   __|  
+                              |  |    |  `--'  | |  `--'  |    |  `----.|  `--'  | .----)   |   |  |____ 
+                              |__|     \______/   \______/     |_______| \______/  |_______/    |_______|
+                                """)
 
 
 # Are we being run as a script? If so, run main().
