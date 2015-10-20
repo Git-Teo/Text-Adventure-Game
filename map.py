@@ -41,7 +41,7 @@ room_comsci_room = {
 
     "items": [item_saw],
 
-    "people": [Jill]
+    "people": [jill]
 }
 
 room_hallway_west = {
@@ -55,7 +55,7 @@ room_hallway_west = {
 
     "items": [item_heart_key],
 
-    "people": [Maypac]
+    "people": [maypac]
 }
 
 room_hallway_east = {
@@ -97,7 +97,7 @@ room_party_house = {
 
     "items": [item_spade_key, item_vodka],
 
-    "people": [Eric, David, Sally]
+    "people": [eric, david, sally]
 }
 
 room_street = {
@@ -111,7 +111,7 @@ room_street = {
 
     "items": [],
 
-    "people": [Fluffy]
+    "people": [fluffy]
 }
 
 room_security_office = {

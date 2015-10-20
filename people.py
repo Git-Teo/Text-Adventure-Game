@@ -17,8 +17,8 @@ toby = {
 }
 
 #antisocial roommate comscience
-Jill = {
-    "name": "Jill",
+jill = {
+    "name": "jill",
 
     "description":
     """ Jill is as silent as silent night, doesn't really speak to anyone. 
@@ -33,8 +33,8 @@ Jill = {
 }
 
 #party people 1
-Eric = {
-    "name": "Eric",
+eric = {
+    "name": "eric",
 
     "description":
     """ If you look up party in a dictionary, you'd see his face.""",
@@ -48,8 +48,8 @@ Eric = {
 
 
 #party people 2
-David = {
-    "name": "David",
+david = {
+    "name": "david",
 
     "description":
     """ David A.K.A the alcoholic. He basically drinks and
@@ -64,8 +64,8 @@ David = {
 }
 
 #party people 3
-Sally = {
-    "name": "Sally",
+sally = {
+    "name": "sally",
 
     "description":
     """ Sally is medical student, she's friendly, loves to socialize and meeting new people. Sometiems 
@@ -79,8 +79,8 @@ Sally = {
 }
 
 #guard to the party
-Maypac = {
-    "name": "Maypac",
+maypac = {
+    "name": "maypac",
 
     "description":
     """ Tough guy, big in size and looks like he could knock anyone out
@@ -94,8 +94,8 @@ Maypac = {
 }
 
 #zombie
-Fluffy = {
-    "name": "Fluffy",
+fluffy = {
+    "name": "fluffy",
 
     "description":
     """Well, he's a zombie.""",
@@ -112,10 +112,10 @@ Fluffy = {
 
 everyone = {
 	"toby" : toby,
-	"Fluffy" : Fluffy,
-    "Jill" : Jill,
-    "Eric" : Eric,
-    "David" : David,
-    "Sally" : Sally,
-    "Maypac" : Maypac
+	"fluffy" : fluffy,
+    "jill" : jill,
+    "eric" : eric,
+    "david" : david,
+    "sally" : sally,
+    "maypac" : maypac
 }
