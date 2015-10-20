@@ -9,15 +9,6 @@ from people import *
 
 true_ending = ""
 
-def is_drunk():
-    # waiting for using items code to finish
-    pass
-
-    #if vodka["used"]:
-    #   drunk = True
-
-    #if water["used"] and drunk = true:
-    #    drunk = false
 
 def drunk_spelling(s):
     """ This function takes a string and randomly replaces some of 
@@ -405,10 +396,17 @@ def execute_talk(person, where):
     return
 
 def execute_use(item_id, where):
+    global drunk 
     i=0
     for item in inventory:
         if item_usable(item, where) and item_id == item["id"]:
             item["used"] = where
+
+            if item["id"] == "vodka":
+                drunk = True
+            if item["id"] == "water" and drunk == True:
+                drunk = False
+
             if not(item["reusable"]):
                 del inventory[i]
             if where != current_room:
@@ -557,7 +555,6 @@ def main():
     # Main game loop
     while True:
         # Display game status (room description, inventory etc.)
-        is_drunk()
         print_room(current_room)
         print_inventory_items(inventory)
 
