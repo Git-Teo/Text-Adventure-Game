@@ -270,7 +270,7 @@ def print_speech_menu(person, inv):
         for item in person["items"]:
             print("TAKE " +item["id"].upper()+ " to take " +item["name"]+" from " +person["name"])
 
-        for item in inv_items:
+        for item in inv:
             print("USE " +item["id"].upper()+ " to use " +item["name"] + " on " +person["name"])
 
         print("IGNORE to exit speech")
@@ -409,10 +409,15 @@ def execute_use(item_id, where):
     for item in inventory:
         if item_usable(item, where) and item_id == item["id"]:
             item["used"] = where
-            del inventory[i]
-            if where in everyone:
+            if not(item["reusable"]):
+                del inventory[i]
+            if where != current_room:
                 print()
                 print(where["item_used_speech"])
+                print()
+            else:
+                print()
+                print()
                 print()
             return
         i+=1

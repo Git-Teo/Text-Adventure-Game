@@ -9,7 +9,9 @@ item_earplugs = {
     
     "mass": 0.3,
 
-    "used": ""
+    "used": "",
+
+    "reusable": True
 }
 
 item_broom = {
@@ -23,7 +25,9 @@ item_broom = {
 
     "mass": 2,
 
-    "used": ""
+    "used": "",
+
+    "reusable": True
 }
 
 item_heart_key = {
@@ -36,7 +40,9 @@ item_heart_key = {
 
     "mass": 0.5,
 
-    "used": ""
+    "used": "",
+
+    "reusable": False
 }
 
 item_spade_key = {
@@ -49,7 +55,9 @@ item_spade_key = {
 
     "mass": 0.6,
 
-    "used": ""
+    "used": "",
+
+    "reusable": False
 }
 
 item_club_key = {
@@ -62,7 +70,9 @@ item_club_key = {
 
     "mass": 0.7,
 
-    "used": ""
+    "used": "",
+
+    "reusable": False
 }
 
 item_phone = {
@@ -74,7 +84,9 @@ item_phone = {
 
     "mass": 0.7,
 
-    "used": ""
+    "used": "",
+
+    "reusable": True
 }
 
 item_water = {
@@ -86,7 +98,9 @@ item_water = {
 
     "mass": 2,
 
-    "used": ""
+    "used": "",
+
+    "reusable": True
 }
 
 item_brain = {
@@ -98,7 +112,9 @@ item_brain = {
 
     "mass": 3,
 
-    "used": ""
+    "used": "",
+
+    "reusable": False
 }
 
 item_dynamite = {
@@ -110,7 +126,9 @@ item_dynamite = {
 
     "mass": 3.5,
 
-    "used": ""
+    "used": "",
+
+    "reusable": False
 }
 
 item_saw = {
@@ -122,7 +140,9 @@ item_saw = {
 
     "mass": 5,
 
-    "used": ""
+    "used": "",
+
+    "reusable": True
 }
 
 item_vodka = {
@@ -134,7 +154,9 @@ item_vodka = {
 
     "mass": 5,
 
-    "used": ""
+    "used": "",
+
+    "reusable": False
 }
 
 item_fluffy = {
@@ -145,4 +167,6 @@ item_fluffy = {
     "description": "brains?",
 
     "mass": 5,
+
+    "reusable": True
 }
