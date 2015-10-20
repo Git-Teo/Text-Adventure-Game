@@ -281,7 +281,7 @@ def print_speech_menu(person, inv):
         talk_input = normalise_input(talk_input)
 
         if talk_input[0] == "ignore":
-            return
+            return  
         else:
             execute_command(talk_input, person)
 
@@ -507,28 +507,31 @@ def Check_win_condition():
     global true_ending
 
     if item_dynamite in maypac["items"]:
-        print ("dynamite given to guard, everyone blows up (or you could get arrested for having dynamite)")
+        print ("Maypac is confused, didn’t think it was actual dynamite and sets it off! The dynamite blows up and kills everyone in the party including Yu.")
         return True
 
     elif current_room == room_utility_room:
-        print ("true ending, you turn off power and go to sleep")
+        print ("With Fluffy’s exceptional picklock skills, Yu was able to get into the utility room.Yu turned the power off and managed to get sufficient sleep and aced the exam.")
         true_ending = True
-        return True
+        return True 
 
     elif current_room == room_security_office and item_dynamite["used"] == "Security office":
         print("tried to use dynamite to blow open door, you blow yourself up")
         return True
 
     elif current_room == room_security_office and item_saw["used"] == "Security office":
-        print("tried to use saw to open door, door was electric and you electrocute youself and die")
+        print("Yu feeling cheeky, didn’t take the electric door sign seriously and used the saw to open the door. Yu felt like Zeus for a split second and a fried potato after that.")
         return True
 
     elif current_room == room_street and (item_saw["used"] == room_street or item_dynamite["used"] == room_street):
-        print("you die trying to fight the zombies")
+        if item_saw["used"]:
+            print("The saw was a slow weapon, by the time Yu managed to saw through an arm of a zombie, both the legs were already eaten. ")
+        else:
+            print("A portion of the zombies died. BUT, Yu not realising the amount of zombies on the street, a single dynamite was not enough to kill all the zombies. Just in a couple of minutes, Yu became supper for the zombies")
         return True        
     
     elif current_room == room_security_office and item_fluffy in inventory:
-        print ("Guard shoots fluffy, you go to jail for having a pet zombie")
+        print ("The security guard sees Fluffy and immediately takes out his gun and shoots Fluffy. Seeing Yu having a zombie as a pet is illegal, Yu was taken to jail for it.")
         return True
 
 
