@@ -6,6 +6,8 @@ from items import *
 from gameparser import *
 from sys import exit
 
+true_ending = ""
+
 def is_drunk():
     # waiting for using items code to finish
     pass
@@ -464,32 +466,32 @@ def move(exits, direction):
 
 
 def Check_win_condition():
-    #Temp. Current win condition is to collect all items and drop in your room. Should we change this to a meaningful objective?
+    global true_ending
 
     if item_dynamite in maypac["items"]:
-        return True
         print ("dynamite given to guard, everyone blows up (or you could get arrested for having dynamite)")
+        return True
 
     elif current_room == room_utility_room:
-        return True
         print ("true ending, you turn off power and go to sleep")
+        true_ending = True
+        return True
 
     elif current_room == room_security_office and item_dynamite["used"] == "Security office":
-        return True
         print("tried to use dynamite to blow open door, you blow yourself up")
+        return True
 
     elif current_room == room_security_office and item_saw["used"] == "Security office":
-        return True
         print("tried to use saw to open door, door was electric and you electrocute youself and die")
+        return True
 
     elif current_room == room_street and (item_saw["used"] == room_street or item_dynamite["used"] == room_street):
-        return True
-        print("you die trying to fight the zombies")        
+        print("you die trying to fight the zombies")
+        return True        
     
     elif current_room == room_security_office and item_fluffy in inventory:
-        return True
         print ("Guard shoots fluffy, you go to jail for having a pet zombie")
-
+        return True
 
 
 
@@ -521,17 +523,26 @@ def main():
         
         if Check_win_condition():
             break
-    print("""
-        8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
-         Y8,    ,8P d8"'    `"8b  88        88    `8b       d8b       d8' 88 8888b     88  
-          Y8,  ,8P d8'        `8b 88        88     "8,     ,8"8,     ,8"  88 88 `8b    88  
-           "8aa8"  88          88 88        88      Y8     8P Y8     8P   88 88  `8b   88  
-            `88'   88          88 88        88      `8b   d8' `8b   d8'   88 88   `8b  88  
-             88    Y8,        ,8P 88        88       `8a a8'   `8a a8'    88 88    `8b 88  
-             88     Y8a.    .a8P  Y8a.    .a8P        `8a8'     `8a8'     88 88     `8888  
-             88      `"Y8888Y"'    `"Y8888Y"'          `8'       `8'      88 88      `888 
-                                    
-                                    """)
+            if true_ending:
+                print("""
+                    8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
+                     Y8,    ,8P d8"'    `"8b  88        88    `8b       d8b       d8' 88 8888b     88  
+                      Y8,  ,8P d8'        `8b 88        88     "8,     ,8"8,     ,8"  88 88 `8b    88  
+                       "8aa8"  88          88 88        88      Y8     8P Y8     8P   88 88  `8b   88  
+                        `88'   88          88 88        88      `8b   d8' `8b   d8'   88 88   `8b  88  
+                         88    Y8,        ,8P 88        88       `8a a8'   `8a a8'    88 88    `8b 88  
+                         88     Y8a.    .a8P  Y8a.    .a8P        `8a8'     `8a8'     88 88     `8888  
+                         88      `"Y8888Y"'    `"Y8888Y"'          `8'       `8'      88 88      `888 
+                                                
+                                                """)
+            else:
+       """____    ____  ______    __    __      __        ______        _______. _______ 
+          \   \  /   / /  __  \  |  |  |  |    |  |      /  __  \      /       ||   ____|
+           \   \/   / |  |  |  | |  |  |  |    |  |     |  |  |  |    |   (----`|  |__   
+            \_    _/  |  |  |  | |  |  |  |    |  |     |  |  |  |     \   \    |   __|  
+              |  |    |  `--'  | |  `--'  |    |  `----.|  `--'  | .----)   |   |  |____ 
+              |__|     \______/   \______/     |_______| \______/  |_______/    |_______|
+                    """)
 
 
 # Are we being run as a script? If so, run main().
