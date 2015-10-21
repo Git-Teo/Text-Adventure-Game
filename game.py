@@ -348,7 +348,7 @@ def events():
         print("and his torch, from which he wish he could see the light from, rolls across the floor")
 
 
-    if item_fluffy["used"] == rooms["Security office"] and first_time_event(6):
+    if item_key["used"] == rooms["Security office"] and first_time_event(6):
         rooms["Utility room"]["locked"] = False
         print("Like usual you trip and slam the door on the way in waking up the officer,")
         print("He peeks and sees Fluffly right behind you, but being as reckless as you, he throws his torch.")
