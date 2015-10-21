@@ -34,7 +34,7 @@ item_broom = {
     "reusable": True
 }
 
-item_key = {
+item_heartkey = {
     #used to open one of your flatmates rooms
     "id": "key",
 

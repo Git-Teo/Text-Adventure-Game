@@ -260,7 +260,7 @@ def zombie_action_cut():
                 else:
                     print("The item doesnt seem to have an affect on the zombie, try another!")
         print("That item is not in your inventory!")
-    
+
 
 
 def first_time_event(n):
@@ -316,8 +316,7 @@ def is_move_possible(next_room):
 def events():
 
     if (item_vodka["used"] == maypac or drunk == True)  and first_time_event(1):
-    """This function prints messages to the console when defined events are detected. It is called in main()
-    """
+        """This function prints messages to the console when defined events are detected. It is called in main()"""
         rooms["Party house"]["locked"] = False 
         print("You show the guard that you have brought alcohol to the party and he lets you pass.")
 
@@ -325,7 +324,7 @@ def events():
         rooms["Utility room"]["locked"] = False
         print("") 
 
-    if item_heart_key["used"] == rooms["Comsci room"] and first_time_event(3):
+    if item_heartkey["used"] == rooms["Comsci room"] and first_time_event(3):
         rooms["Comsci room"]["locked"] = False
         print("You open the door only to see your flat mate hacking away at an online game, no suprise after all.")
 
