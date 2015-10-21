@@ -1,6 +1,14 @@
 from items import *
 from people import *
 
+blocks = {
+    "party_room": "",
+    "comsci_room": "",
+    "security_room": "",
+    "utility_room": ""
+}
+
+
 room_your_room = {
     "name": "Your room",
 
@@ -12,7 +20,13 @@ room_your_room = {
 
     "items": [],
 
-    "people": [toby]
+    "people": [],
+
+    "locked": False,
+
+    "blocked_text": "",
+
+    "usable_items": []
 }
 
 room_chem_room = {
@@ -27,7 +41,13 @@ room_chem_room = {
 
     "items": [item_dynamite],
 
-    "people": []
+    "people": [toby],
+
+    "locked": False,
+
+    "blocked_text": "",
+
+    "usable_items": []
 }
 
 room_comsci_room = {
@@ -39,9 +59,15 @@ room_comsci_room = {
 
     "exits": {"west": "East Hallway"},
 
-    "items": [item_saw],
+    "items": [item_hammer],
 
-    "people": []
+    "people": [jill],
+
+    "locked": True,
+
+    "blocked_text": "*knock* *knock*, it surprisingly seems like your flat mate has gone out, you notice the lock to the door has an odd pattern",
+
+    "usable_items": [item_heart_key]
 }
 
 room_hallway_west = {
@@ -55,7 +81,13 @@ room_hallway_west = {
 
     "items": [item_heart_key],
 
-    "people": []
+    "people": [maypac],
+
+    "locked": False,
+
+    "blocked_text": "",
+
+    "usable_items": []
 }
 
 room_hallway_east = {
@@ -65,11 +97,17 @@ room_hallway_east = {
     """You find yourself in the east part of the poorly lit hallway, barely being able to see your hand in front of your face.
      A mosaic of graffiti continues to cover the walls, leading to the cobwebbed window frame at the end of the corridor. """,
 
-    "exits": {"north": "Chem room", "east": "Comsci room", "west": "West Hallway"},
+    "exits": {"north": "Chem room", "east": "Comsci room", "west": "West Hallway", "south" : "Street"},
 
     "items": [item_heart_key],
 
-    "people": []
+    "people": [],
+
+    "locked": False,
+
+    "blocked_text": "",
+
+    "usable_items": []
 }
 
 room_kitchen = {
@@ -82,7 +120,13 @@ room_kitchen = {
 
     "items": [],
 
-    "people": []
+    "people": [],
+
+    "locked": False,
+
+    "blocked_text": "",
+
+    "usable_items": []
 }
 
 room_party_house = {
@@ -93,11 +137,17 @@ room_party_house = {
     This house has been converted to look like Prism on a Friday night, with strobe lights, huge speakers, a DJ table and a DIY bar.
     There's at least 50 people squeezed into the house, with alcohol spilling over carpets and making all the surfaces sticky underfoot. """,
 
-    "exits": {"east": "Street", "north": "West Hallway"},
+    "exits": {"north": "West Hallway"},
 
-    "items": [item_spade_key, item_vodka],
+    "items": [item_vodka],
 
-    "people": []
+    "people": [eric, david, sally, my_friends_wall],
+
+    "locked": True,
+
+    "blocked_text": "The guard blocks your way, your not equiped enough",
+
+    "usable_items": []
 }
 
 room_street = {
@@ -107,11 +157,17 @@ room_street = {
     """Amongst the smell of smoke, the laughter from drunken students on nights out echoes in the air. 
     The floor is a sea of broken glass crunching beneath your feet, with cigarette butts sticking to your shoes. """,
 
-    "exits": {"east": "Security office", "west": "Party house", "south": "Utility room"},
+    "exits": {"east": "Security office", "south": "Utility room", "north": "East Hallway"},
 
     "items": [],
 
-    "people": []
+    "people": [fluffy],
+
+    "locked": True,
+
+    "blocked_text": "There seems to be a wooden blockade blocking your way out",
+
+    "usable_items": []
 }
 
 room_security_office = {
@@ -123,9 +179,15 @@ room_security_office = {
 
     "exits": {"west": "Street", "east" : "Utility room"},
 
-    "items": [item_club_key],
+    "items": [item_lockpick],
 
-    "people": []
+    "people": [],
+
+    "locked": True,
+
+    "blocked_text": "You look through the window and see a security officer 'relaxing', but the door is locked",
+
+    "usable_items": []
 }
 
 room_utility_room = {
@@ -140,7 +202,13 @@ room_utility_room = {
 
     "items": [],
 
-    "people": []
+    "people": [],
+
+    "locked": True,
+
+    "blocked_text": "You hear the sound of POWER, but a door blocks your way",
+
+    "usable_items": []
 }
 
 rooms = {

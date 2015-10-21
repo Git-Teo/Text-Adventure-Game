@@ -1,9 +1,13 @@
 import random, string
 
-from map import rooms
+from map import *
 from player import *
 from items import *
 from gameparser import *
+from sys import exit
+from people import *
+
+true_ending = ""
 
 def is_drunk():
     # waiting for using items code to finish
@@ -154,6 +158,7 @@ def print_room(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
     # Display room name
+    print("--------------------------------------------------------------------------------")
     print()
     rn = room["name"].upper()
     if drunk:
@@ -236,13 +241,16 @@ def print_menu(exits, room_items, inv_items):
         print_exit(direction, exit_leads_to(exits, direction))
 
     for item in room_items:
-        print("TAKE " + item["id"].upper() + " to take " + item["name"])
+        print("TAKE " +item["id"].upper()+ " to take " +item["name"])
 
     for item  in inv_items:
-        print("DROP " + item["id"].upper() + " to drop " + item["name"])
+        print("DROP " +item["id"].upper()+ " to drop " +item["name"])
 
     for person in current_room["people"]:
-        print("TALK " + person["name"].upper()+ " to talk to " +person["name"])
+        print("TALK " +person["name"].upper()+ " to talk to " +person["name"])
+
+    for item in inv_items:
+        print("USE " +item["id"].upper()+ " to use " +item["name"])
 
     print("What do you want to do?")
 
@@ -258,14 +266,18 @@ def print_speech_menu(person, inv):
         for item in person["items"]:
             print("TAKE " +item["id"].upper()+ " to take " +item["name"]+" from " +person["name"])
 
+        for item in inv:
+            print("USE " +item["id"].upper()+ " to use " +item["name"] + " on " +person["name"])
+
         print("IGNORE to exit speech")
+        print()
         print("What do you want to do?")
 
         talk_input = input("> ")
         talk_input = normalise_input(talk_input)
 
         if talk_input[0] == "ignore":
-            return
+            return  
         else:
             execute_command(talk_input, person)
 
@@ -289,15 +301,124 @@ def is_valid_exit(exits, chosen_exit):
     """
     return chosen_exit in exits
 
+def zombie_action_cut():
+    print("You stumble and fall out of the party room from the first floor.")
+    print("Pick yourself up kid! and face the zombie that your 'friends', 'forgot' to mention was walking about outside your house!")
+    print()
+    while True:
+        print("You can:")
+        for item in inv_items:
+            print("USE " +item["id"].upper()+ " to use " +item["name"]+ " on the zombie")
+        print()
+        print("What do you want to do?")   
+        user_input = input("> ")
+        normalised_user_input = normalise_input(user_input)
+        for item in inventory:
+            if normalised_user_input[0] == "use" and normalised_user_input[1] == item["id"]:
+                if item_usable(item, fluffly):
+                    if item == item_brain:
+                        print("Is this how you bring a zombie down? *zombie squats*")
+                        print("huh... he seems to be listening to my voice, move to the left! *zombie moves to the left*,"
+                        print("to the left again! *zombie puts zombie brain in a box*. Good boy! I think I will name him...")
+                        print("Fluffy!... what? he looks so soft and comfortable... no? Well I guess I did spoil you.")
+                        return
+                    elif item == item_dynamite:
+                        print("Look at zombie chasing the dynamite stick! *LOUD EXPLOSION*")
+                        print("*A hoard of zombies comes around from the corner*")
+                        print("Maybe if you look around maybe... *Crunch* *Crunch* ... forgot about the runners ... oops.")
+                        return
+                    elif item == item_hammer:
+                        print("*SMACK* *LOUD SCREECH*")
+                        print("*A hoard of zombies comes around from the corner*")
+                        print("Maybe if you look around maybe... *Crunch* *Crunch* ... forgot about the runners ... oops.")
+                        return
+                    else:
+                        print("No! don't throw the phone at him!")
+                        print("*Zombie Calls For Reinforcement* great job! try and think twice next time!")
+                        print("*A hoard of zombies comes around from the corner*")
+                        print("Maybe if you look around maybe... *Crunch* *Crunch* ... forgot about the runners ... oops.")
+                        return
+                else:
+                    print("The item doesnt seem to have an affect on the zombie, try another!")
+        print("That item is not in your inventory!")
+
+
+
+
+
+
+
+
 def enough_space(item):
     total = 0
     for i in inventory:
         total += i["mass"]
 
-    if (total+item["mass"] > 3):
+    if (total+item["mass"] > 100):
+        print("You cannot pick up any more items!")
         return False
     else:
         return True
+
+def item_usable(item, on):
+    if on == current_room:
+        if item in self_usable_items:
+            return True
+    elif item in on["usable_items"]:
+        return True
+    else:
+        return False
+
+def is_move_possible(next_room):
+    if next_room["locked"]:
+        return False
+    else:
+        return True
+
+def events():
+    if item_vodka["used"] == maypac:
+        rooms["Party house"]["locked"] = False 
+        print("You show off you drinking skills and the guard lets you pass") 
+
+    if item_fluffy["used"] == rooms["Utility room"] and item_fluffy["has_lockpicks"]:
+        rooms["Utility room"]["locked"] = False
+        print("") 
+
+    if item_heart_key["used"] == rooms["Comsci room"]:
+        rooms["Comsci room"]["locked"] = False
+        print("You open the door only to see your flat mate hacking away at an online game, no suprise after all.")
+
+    if item_hammer["used"] == my_friends_wall:
+        rooms["Street"]["locked"] = False
+        rooms["Party house"]["exits"]["east"] = "Street"
+        my_friends_wall["speech"] = "I am just a dead talking wall, nothing to see here."
+        print("Dont worry your friends are to drunk to care about the talking wall you just kocked over")
+        print("I mean, how is this all real in the first place? Its not like you really have friends do you?")
+        print("Remember your real friend from here is that sweet, luxurious and handsome talking pillow") 
+
+    if item_dynamite["used"] == rooms["Security office"]:
+        rooms["Security office"]["locked"] = False
+        print("The wall to the building collapses and down comes security officer with it,") 
+        print("His 'relaxing' has seemed to have turned into 'intense mediation',")
+        print("and his torch, from which he wish he could see the light from, rolls across the floor")
+
+
+    if item_fluffy["used"] == rooms["Security office"]:
+        rooms["Utility room"]["locked"] = False
+        print("Like usual you trip and slam the door on the way in waking up the officer,")
+        print("He peeks and sees Fluffly right behind you, but being as reckless as you, he throws his torch.")
+        print("*LIGHTS OUT* for you, well have a good sleep my friend.")
+        print("But it will never be the same without me") 
+
+    if rooms["Street"]["first_arrival"] == False and current_room == rooms["Street"]:
+        zombie_action_cut()
+        rooms["Street"]["first_arrival"] = True
+
+    return
+
+
+
+
 
 
 def execute_go(direction):
@@ -309,9 +430,13 @@ def execute_go(direction):
 
     global current_room
 
-    if is_valid_exit(current_room["exits"], direction):
+    if is_valid_exit(current_room["exits"], direction) and is_move_possible(rooms[current_room["exits"][direction]]):
         current_room = rooms[current_room["exits"][direction]]
         print("You have moved to " + current_room["name"] + ".")
+        print()
+
+    elif is_valid_exit(current_room["exits"], direction):
+        print(rooms[current_room["exits"][direction]]["blocked_text"]) 
     else:
         print("You cannot go there.")
     return
@@ -326,11 +451,12 @@ def execute_take(item_id, where):
 
     i = 0
     for item in where["items"]:
-        if (item_id == where["items"][i]["id"]):
+        if (item_id == item["id"]):
             if enough_space(item):
                 inventory.append(item)
                 del where["items"][i]
                 print(item_id.upper()+ " has been taken")
+                print()
                 return
             else:
                 print("You cannot take this item, too much weight")
@@ -349,13 +475,15 @@ def execute_drop(item_id, where):
     """
     i = 0
     for item in inventory:
-        if item_id == inventory[i]["id"]:
+        if item_id == item["id"]:
             where["items"].append(item)
             del inventory[i]
             if where == current_room:
                 print(item_id.upper()+ " has been dropped")
+                print()
             else:
                 print(item_id.upper()+ " has been given to " +where["name"])
+                print()
             return
         i += 1
     print(item_id.upper()+ " is not in your inventory")
@@ -363,17 +491,48 @@ def execute_drop(item_id, where):
 
 
 def execute_talk(person, where):
-
     for ppl in where["people"]:
-        if person == ppl["name"]: 
+        if person == ppl["name"]:
+            print()
+            print(ppl["description"])
             print()  
             print(ppl["speech"])
             print_speech_menu(ppl, inventory)
+            events()
             return
 
     print(person+ " is not in this room")
     return
 
+
+def execute_use(item_id, on):
+    global drunk 
+    i=0
+    for item in inventory:
+        if item_usable(item, on) and item_id == item["id"]:
+            item["used"] = on
+            events()
+
+            if item["id"] == "vodka":
+                drunk = True
+            if item["id"] == "water" and drunk == True:
+                drunk = False
+
+            if not(item["reusable"]):
+                del inventory[i]
+            """if on != current_room:
+                print()
+                print(on["item_used_speech"])
+                print()
+            else:
+                print()
+                print()
+                print()
+            """
+            return
+        i+=1
+    print(item_id.upper()+ " cannot be used as it has no effect")
+    return
 
     
 
@@ -404,12 +563,23 @@ def execute_command(command, where):
         else:
             print("Drop what?")
 
-    elif command[0] == "talk":
+    elif command[0] == "talk" and where == current_room:
         if len(command) > 1:
             execute_talk(command[1], where)
         else:
             print("Talk to who?")
 
+    elif command[0] == "use":
+        if len(command) > 2:
+            execute_use(command[1], rooms[current_room["exits"][command[2]]])
+        elif len(command) > 1:
+            execute_use(command[1], where)
+        else:
+            print("Use what?")
+
+    elif command[0] == "exit":
+        if len(command) == 1:
+            exit()
     else:
         print("This makes no sense.")
 
@@ -451,14 +621,37 @@ def move(exits, direction):
 
 
 def Check_win_condition():
-    return False #temp
-    '''
-    all_items = [item_id, item_handbook, item_laptop, item_money, item_pen, item_biscuits]
+    global true_ending
+
+    if item_dynamite in maypac["items"]:
+        print ("Maypac is confused, didn’t think it was actual dynamite and sets it off! The dynamite blows up and kills everyone in the party including Yu.")
+        return True
+
+    elif current_room == room_utility_room:
+        print ("With Fluffys exceptional picklock skills, Yu was able to get into the utility room.Yu turned the power off and managed to get sufficient sleep and aced the exam.")
+        true_ending = True
+        return True 
+
+    elif current_room == room_security_office and item_dynamite["used"] == "Security office":
+        print("tried to use dynamite to blow open door, you blow yourself up")
+        return True
+
+    elif current_room == room_security_office and item_saw["used"] == "Security office":
+        print("Yu feeling cheeky, didn’t take the electric door sign seriously and used the saw to open the door. Yu felt like Zeus for a split second and a fried potato after that.")
+        return True
+
+    elif current_room == room_street and (item_hammer["used"] == room_street or item_dynamite["used"] == room_street):
+        if item_hammer["used"]:
+            print("The saw was a slow weapon, by the time Yu managed to saw through an arm of a zombie, both the legs were already eaten. ")
+        else:
+            print("A portion of the zombies died. BUT, Yu not realising the amount of zombies on the street, a single dynamite was not enough to kill all the zombies. Just in a couple of minutes, Yu became supper for the zombies")
+        return True        
     
-    for item in all_items:
-        if not(item in rooms["Reception"]["items"]):
-            return False
-    return True'''
+    elif current_room == room_security_office and item_fluffy in inventory:
+        print ("The security guard sees Fluffy and immediately takes out his gun and shoots Fluffy. Seeing Yu having a zombie as a pet is illegal, Yu was taken to jail for it.")
+        return True
+
+
 
 # This is the entry point of our program
 def main():
@@ -476,29 +669,38 @@ def main():
     # Main game loop
     while True:
         # Display game status (room description, inventory etc.)
-        is_drunk()
         print_room(current_room)
         print_inventory_items(inventory)
 
         # Show the menu with possible actions and ask the player
-        command = menu(current_room["exits"], current_room["items"], inventory)
 
+        command = menu(current_room["exits"], current_room["items"], inventory)
+        events()
         # Execute the player's command
         execute_command(command, current_room)
         
         if Check_win_condition():
             break
-    print("""
-        8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
-         Y8,    ,8P d8"'    `"8b  88        88    `8b       d8b       d8' 88 8888b     88  
-          Y8,  ,8P d8'        `8b 88        88     "8,     ,8"8,     ,8"  88 88 `8b    88  
-           "8aa8"  88          88 88        88      Y8     8P Y8     8P   88 88  `8b   88  
-            `88'   88          88 88        88      `8b   d8' `8b   d8'   88 88   `8b  88  
-             88    Y8,        ,8P 88        88       `8a a8'   `8a a8'    88 88    `8b 88  
-             88     Y8a.    .a8P  Y8a.    .a8P        `8a8'     `8a8'     88 88     `8888  
-             88      `"Y8888Y"'    `"Y8888Y"'          `8'       `8'      88 88      `888 
-                                    
-                                    """)
+            if true_ending:
+                print("""
+                    8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
+                     Y8,    ,8P d8"'    `"8b  88        88    `8b       d8b       d8' 88 8888b     88  
+                      Y8,  ,8P d8'        `8b 88        88     "8,     ,8"8,     ,8"  88 88 `8b    88  
+                       "8aa8"  88          88 88        88      Y8     8P Y8     8P   88 88  `8b   88  
+                        `88'   88          88 88        88      `8b   d8' `8b   d8'   88 88   `8b  88  
+                         88    Y8,        ,8P 88        88       `8a a8'   `8a a8'    88 88    `8b 88  
+                         88     Y8a.    .a8P  Y8a.    .a8P        `8a8'     `8a8'     88 88     `8888  
+                         88      `"Y8888Y"'    `"Y8888Y"'          `8'       `8'      88 88      `888 
+                                                
+                                                """)
+            else:
+                 print("""____    ____  ______    __    __      __        ______        _______. _______ 
+                          \   \  /   / /  __  \  |  |  |  |    |  |      /  __  \      /       ||   ____|
+                           \   \/   / |  |  |  | |  |  |  |    |  |     |  |  |  |    |   (----`|  |__   
+                            \_    _/  |  |  |  | |  |  |  |    |  |     |  |  |  |     \   \    |   __|  
+                              |  |    |  `--'  | |  `--'  |    |  `----.|  `--'  | .----)   |   |  |____ 
+                              |__|     \______/   \______/     |_______| \______/  |_______/    |_______|
+                                """)
 
 
 # Are we being run as a script? If so, run main().
