@@ -68,7 +68,7 @@ room_comsci_room = {
 
     "blocked_text": "*knock* *knock*, it surprisingly seems like your flat mate has gone out, you notice the lock to the door has an odd pattern",
 
-    "usable_items": [item_key]
+    "usable_items": [item_heartkey]
 }
 
 room_hallway_west = {
@@ -190,7 +190,7 @@ room_security_office = {
 
     "blocked_text": "You look through the window and see a security officer 'relaxing', but the door is locked",
 
-    "usable_items": []
+    "usable_items": [item_key, item_dynamite]
 }
 
 room_utility_room = {
@@ -211,7 +211,7 @@ room_utility_room = {
 
     "blocked_text": "You hear the sound of POWER, but a door blocks your way",
 
-    "usable_items": []
+    "usable_items": [item_fluffy]
 }
 
 rooms = {

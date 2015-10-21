@@ -199,6 +199,8 @@ def print_speech_menu(person, inv):
         print("What do you want to do?")
 
         talk_input = input("> ")
+        print()
+
         talk_input = normalise_input(talk_input)
         if talk_input[0] == "ignore":
             return  
@@ -231,7 +233,9 @@ def zombie_action_cut():
         print()
         print("What do you want to do?")   
         user_input = input("> ")
+        print()
         normalised_user_input = normalise_input(user_input)
+
         for item in inventory:
             if normalised_user_input[0] == "use" and normalised_user_input[1] == item["id"]:
                 if item_usable(item, fluffy):
@@ -240,6 +244,7 @@ def zombie_action_cut():
                         print("huh... he seems to be listening to my voice, move to the left! *zombie moves to the left*,")
                         print("to the left again! *zombie puts zombie brain in a box*. Good boy! I think I will name him...")
                         print("Fluffy!... what? he looks so soft and comfortable... no? Well I guess I did spoil you.")
+                        inventory.append(item_fluffy)
                         return
                     elif item == item_dynamite:
                         print("Look at zombie chasing the dynamite stick! *LOUD EXPLOSION*")
@@ -259,7 +264,9 @@ def zombie_action_cut():
                         return
                 else:
                     print("The item doesnt seem to have an affect on the zombie, try another!")
-        print("That item is not in your inventory!")
+                    break
+        if not(normalised_user_input[1] in inventory):
+            print("That item is not in your inventory!")
 
 
 
@@ -297,8 +304,6 @@ def get_inv_weight(inventory):
         return weight
 
 def item_usable(item, on):
-    """
-    """
     if on == current_room:
         if item in self_usable_items:
             return True
@@ -465,6 +470,7 @@ def execute_use(item_id, on):
 
             if not(item["reusable"]):
                 del inventory[i]
+
             """if on != current_room:
                 print()
                 print(on["item_used_speech"])
@@ -548,7 +554,7 @@ def menu(exits, room_items, inv_items):
 
     # Read player's input
     user_input = input("> ")
-
+    print()
     # Normalise the input
     normalised_user_input = normalise_input(user_input)
     return normalised_user_input
@@ -580,7 +586,7 @@ def Check_win_condition():
         print("tried to use dynamite to blow open door, you blow yourself up")
         return True
 
-    elif current_room == room_security_office and item_saw["used"] == "Security office":
+    elif current_room == room_security_office and item_hammer["used"] == "Security office":
         print("Yu feeling cheeky, didn’t take the electric door sign seriously and used the saw to open the door. Yu felt like Zeus for a split second and a fried potato after that.")
         return True
 
@@ -609,6 +615,7 @@ def main():
 88P   Y8b    88 88          88                 88 Y8,        ,8P    88       
 88     "88,  88 88          88         88,   ,d88  Y8a.    .a8P     88       
 88       Y8b 88 88888888888 88888888888 "Y8888P"    `"Y8888Y"'      88""")
+
 
     # Main game loop
     while True:
