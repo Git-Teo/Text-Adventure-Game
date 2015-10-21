@@ -273,11 +273,18 @@ def enough_space(item):
     for i in inventory:
         total += i["mass"]
 
-    if (total+item["mass"] > max_weight):
+    #if (total+item["mass"] > max_weight):
+    if get_inv_weight(inventory) > max_weight:
         print("You cannot pick up any more items!")
         return False
     else:
         return True
+
+def get_inv_weight(inventory):
+    for i in inventory:
+        weight = 0
+        weight += i["mass"]
+        return weight
 
 def item_usable(item, on):
     """
@@ -508,6 +515,11 @@ def execute_command(command, where):
     elif command[0] == "exit":
         if len(command) == 1:
             exit()
+    elif command[0] =="inventory":
+        if len(command) == 2 and command[1] == "weight":
+            #prints inv weight.
+            print(str(get_inv_weight(inventory)) + " Kilograms")
+
     else:
         print("This makes no sense.")
 
