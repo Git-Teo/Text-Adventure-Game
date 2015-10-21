@@ -260,10 +260,7 @@ def zombie_action_cut():
                 else:
                     print("The item doesnt seem to have an affect on the zombie, try another!")
         print("That item is not in your inventory!")
-
-<<<<<<< HEAD
-
-
+    
 
 
 def first_time_event(n):
@@ -275,11 +272,6 @@ def first_time_event(n):
     else:
         return False
 
-
-
-
-=======
->>>>>>> 3238058c732c4edfb0595a4bcf7d17f6165433b8
 def enough_space(item):
     """This function is called when the player tries to pick up an item. It takes the item as a parameter and checks to
     make sure that all of the items in the players inventory does not exceed max_weight (integer). If the max_weight is
@@ -322,7 +314,7 @@ def is_move_possible(next_room):
         return True
 
 def events():
-<<<<<<< HEAD
+
     if (item_vodka["used"] == maypac or drunk == True)  and first_time_event(1):
     """This function prints messages to the console when defined events are detected. It is called in main()
     """
