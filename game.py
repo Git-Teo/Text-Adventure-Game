@@ -727,15 +727,18 @@ def Check_win_condition():
 
 def print_ending(real_ending):
     if real_ending:
-        print("""
-                    8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
-                     Y8,    ,8P d8"'    `"8b  88        88    `8b       d8b       d8' 88 8888b     88  
-                      Y8,  ,8P d8'        `8b 88        88     "8,     ,8"8,     ,8"  88 88 `8b    88  
-                       "8aa8"  88          88 88        88      Y8     8P Y8     8P   88 88  `8b   88  
-                        `88'   88          88 88        88      `8b   d8' `8b   d8'   88 88   `8b  88  
-                         88    Y8,        ,8P 88        88       `8a a8'   `8a a8'    88 88    `8b 88  
-                         88     Y8a.    .a8P  Y8a.    .a8P        `8a8'     `8a8'     88 88     `8888  
-                         88      `"Y8888Y"'    `"Y8888Y"'          `8'       `8'      88 88      `888 
+        print("""                                                             
+                                                             
+  IN     IN  WIN     WL   OU       PW          YO   JY   WI    LW   
+   WI   UH  NY  WI   UO   NY       OU     OU   IN   KH   UW    OU   
+    FW NY   WI   U   NY   WI       NY     IN   WH   DW   YOU   NY   
+      UW   KU    YO  WI   UF       WI     WI   OU   RI   IN OU WI   
+      YO   LY    IN  UP   YO       UL     OU   NY   HS   LW  YOU    
+      IN   IN    WD  YO   IN       YO     NYO  WI   UD   OU   NYO   
+      WI   IW    OU  IN   PW       IN TI  IN   U    MH   NY    IN   
+      OU    OU  IN    W   OU       WIL  OU W  YO    FK   WI     W   
+      NY     YOUB      WIN         YO   IN  UI      KL   NM     T
+                                                             
                                                 
                                                 """)
         exit()
