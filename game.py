@@ -303,7 +303,7 @@ def is_valid_exit(exits, chosen_exit):
 
 def zombie_action_cut():
     print("You stumble and fall out of the party room from the first floor.")
-    print("Pick yourself up kid! and face the zombie that your 'friends', 'forgot' to mention was walking about outside your house!")
+    print("Pick yourself up kid! And face the zombie that your 'friends' forgot to mention was walking about outside your house!")
     print()
     while True:
         print("You can:")
@@ -392,9 +392,9 @@ def events():
         rooms["Street"]["locked"] = False
         rooms["Party house"]["exits"]["east"] = "Street"
         my_friends_wall["speech"] = "I am just a dead talking wall, nothing to see here."
-        print("Dont worry your friends are to drunk to care about the talking wall you just kocked over")
+        print("Dont worry your friends are too drunk to care about the talking wall you just knocked over.")
         print("I mean, how is this all real in the first place? Its not like you really have friends do you?")
-        print("Remember your real friend? that sweet, luxurious and handsome talking pillow?") 
+        print("Remember your real friend? That sweet, luxurious and handsome talking pillow?") 
 
     if item_dynamite["used"] == rooms["Security office"]:
         rooms["Security office"]["locked"] = False
