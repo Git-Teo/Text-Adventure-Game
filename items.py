@@ -38,7 +38,7 @@ item_heartkey = {
     #used to open one of your flatmates rooms
     "id": "heartkey",
 
-    "name": "a key",
+    "name": "a heartkey",
 
     "description": "This has a heart symbol on it. You recall seeing someone holding this key before",
 
