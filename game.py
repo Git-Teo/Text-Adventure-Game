@@ -528,7 +528,7 @@ def execute_command(command, where):
         else:
             print("Use what?")
 
-    elif command[0] == "" and where == current_room:
+    elif command[0] == "show" :
         if len(command) > 1:
             execute_talk(command[1], where)
         else:
