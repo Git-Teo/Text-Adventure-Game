@@ -528,9 +528,16 @@ def execute_command(command, where):
         else:
             print("Use what?")
 
+    elif command[0] == "" and where == current_room:
+        if len(command) > 1:
+            execute_talk(command[1], where)
+        else:
+            print("Talk to who?")
+
     elif command[0] == "exit":
         if len(command) == 1:
             exit()
+
     elif command[0] =="inventory":
         if len(command) == 2 and command[1] == "weight":
             #prints inv weight.
@@ -549,7 +556,6 @@ def menu(exits, room_items, inv_items):
     function before being returned.
     """
 
-    # Display menu
     print_menu(exits, room_items, inv_items)
 
     # Read player's input
@@ -624,7 +630,8 @@ def main():
         print_inventory_items(inventory)
 
         # Show the menu with possible actions and ask the player
-
+        print("SHOW OPTIONS to show possible commands")
+        print("HELP to show command layouts")
         command = menu(current_room["exits"], current_room["items"], inventory)
         events()
         # Execute the player's command
