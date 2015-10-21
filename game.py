@@ -270,7 +270,7 @@ def print_speech_menu(person, inv):
 
         talk_input = input("> ")
         talk_input = normalise_input(talk_input)
-
+        print(talk_input)
         if talk_input[0] == "ignore":
             return  
         else:
@@ -612,7 +612,8 @@ def main():
         execute_command(command, current_room)
         
         if Check_win_condition():
-            break
+            
+
             if true_ending:
                 print("""
                     8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
@@ -633,6 +634,8 @@ def main():
                               |  |    |  `--'  | |  `--'  |    |  `----.|  `--'  | .----)   |   |  |____ 
                               |__|     \______/   \______/     |_______| \______/  |_______/    |_______|
                                 """)
+            break  
+
 
 
 # Are we being run as a script? If so, run main().

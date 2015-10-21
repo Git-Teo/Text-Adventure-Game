@@ -132,7 +132,7 @@ fluffy = {
 
     "item_used_speech": "",
 
-    "usable_items": []
+    "usable_items": [item_hammer, item_brain, item_phone, item_dynamite]
 }
 
 my_friends_wall = {
