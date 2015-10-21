@@ -31,6 +31,60 @@ def drunk_spelling(s):
 
     return output
 
+def print_no_newline(string):
+    import sys
+    sys.stdout.write(string)
+    sys.stdout.flush()
+
+def print_map():
+    x = current_room["coordinates"][0]
+    y = current_room["coordinates"][1]
+    for row in range(0,len(mapped)):
+        for level in range(0, 3): 
+            i = 0
+            for place in mapped[row]:
+
+                if level == 0 and i != 3 and x == i and y == row:
+                    print_no_newline("┌─  ─┐")
+                elif level == 0 and i == 3 and x == i and y == row:
+                    print("┌─  ─┐")
+
+                elif level == 0 and i != 3:
+                    print_no_newline("┌────┐")
+                elif level == 0 and i == 3:
+                    print("┌────┐")
+
+                elif level == 1 and i != 3 and x == i and y == row:
+                    print_no_newline(" "+place+" ")
+                elif level == 1 and i == 3 and x == i and y == row:
+                    print(" "+place+" ")
+
+                elif level == 1 and i != 3 and place != "":
+                    print_no_newline("│"+place+"│")
+                elif level == 1 and i == 3 and place != "":
+                    print("│"+place+"│")
+
+                elif level == 1 and i != 3 and place == "":
+                    print_no_newline("│    │")
+                elif level == 1 and i == 3 and place == "":
+                    print("│    │")
+
+                elif level == 2 and i != 3 and x == i and y == row:
+                    print_no_newline("└─  ─┘")
+                elif level == 2 and i == 3 and x == i and y == row:
+                    print("└─  ─┘")
+
+                elif level == 2 and i != 3:
+                    print_no_newline("└────┘")
+                elif level == 2 and i == 3:
+                    print("└────┘")
+                i+=1
+    print()
+
+
+
+               
+
 
 
 
@@ -684,6 +738,7 @@ def main():
         # Display game status (room description, inventory etc.)
         print_room(current_room)
         print_inventory_items(inventory)
+        print_map()
 
         # Show the menu with possible actions and ask the player
         command = menu(current_room["exits"], current_room["items"], inventory)

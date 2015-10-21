@@ -8,6 +8,8 @@ blocks = {
     "utility_room": ""
 }
 
+mapped = [["", "ROOM", "CHEM", ""],["KTCN", "WSTH", "ESTH", "COMS"],["", "PRTY", "STRT", "SCRT"],["", "", "UTLT", ""]]
+
 first_time = [True, True, True, True, True, True]
 
 room_your_room = {
@@ -27,7 +29,9 @@ by the thumping sound of bass, from a party playing stupidly loud music.""",
 
     "blocked_text": "",
 
-    "usable_items": []
+    "usable_items": [],
+
+    "coordinates": [1,0]
 }
 
 room_chem_room = {
@@ -48,7 +52,9 @@ Shelves are full of chemistry joke books, which amuses his poor sense of humour.
 
     "blocked_text": "",
 
-    "usable_items": []
+    "usable_items": [],
+
+    "coordinates": [2,0]
 }
 
 room_comsci_room = {
@@ -73,7 +79,9 @@ From here you can move to the 'east hallway'""",
     "blocked_text": """*knock* *knock*, it surprisingly seems like your flat mate has gone out, 
 you notice the lock to the door has an odd pattern""",
 
-    "usable_items": [item_heartkey]
+    "usable_items": [item_heartkey],
+
+    "coordinates": [3,1]
 }
 
 room_hallway_west = {
@@ -95,7 +103,9 @@ Maypac the guard is leaning by the side of the entrance to the party""",
 
     "blocked_text": "",
 
-    "usable_items": []
+    "usable_items": [],
+
+    "coordinates": [1,1]
 }
 
 room_hallway_east = {
@@ -117,7 +127,9 @@ leading to the window frame at the end of the corridor. """,
 
     "blocked_text": "",
 
-    "usable_items": []
+    "usable_items": [],
+
+    "coordinates": [2,1]
 }
 
 room_kitchen = {
@@ -138,7 +150,9 @@ you see that all surfaces are hidden among dirty dishes. """,
 
     "blocked_text": "",
 
-    "usable_items": []
+    "usable_items": [],
+
+    "coordinates": [0,1]
 }
 
 room_party_house = {
@@ -163,7 +177,9 @@ You manage to vaguely spot Eric, Sally and David from the crowd""",
 
     "blocked_text": """The guard blocks your way, your not equiped enough""",
 
-    "usable_items": []
+    "usable_items": [],
+
+    "coordinates": [1,2]
 }
 
 room_street = {
@@ -187,7 +203,9 @@ with cigarette butts sticking to your shoes. """,
 
     "usable_items": [],
 
-    "first_arrival" : False
+    "first_arrival" : False,
+
+    "coordinates": [2,2]
 }
 
 room_security_office = {
@@ -210,7 +228,9 @@ and the heavy exhale from the sleeping security guard.""",
 
     "blocked_text": """You look through the window and see a security officer 'relaxing', but the door is locked""",
 
-    "usable_items": [item_key, item_dynamite]
+    "usable_items": [item_key, item_dynamite],
+
+    "coordinates": [3,2]
 }
 
 room_utility_room = {
@@ -230,7 +250,9 @@ room_utility_room = {
 
     "blocked_text": """You hear the sound of POWER, but a door blocks your way""",
 
-    "usable_items": [item_fluffy]
+    "usable_items": [item_fluffy],
+
+    "coordinates": [2,3]
 }
 
 rooms = {

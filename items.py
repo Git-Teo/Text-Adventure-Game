@@ -7,9 +7,7 @@ item_earplugs = {
 
     "name": "earplugs",
 
-    "description":
-
-    "Your trusty earplugs from Boots, they were once a nice purple colour but are now coated in layers of earwax. You should probably wash these.",
+    "description": "Your trusty earplugs from Boots, they were once a nice purple colour but are now coated in layers of earwax. You should probably wash these.",
     
     "mass": 0.3,
 
@@ -23,9 +21,7 @@ item_broom = {
 
     "name": "broom",
 
-    "description":
-
-    "Something about using it to bang the ceiling",
+    "description": "Something about using it to bang the ceiling",
 
     "mass": 2,
 
