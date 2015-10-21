@@ -8,12 +8,6 @@ from people import *
 
 true_ending = ""
 
-def is_drunk():
-    # waiting for using items code to finish
-    # pass
-    global drunk
-    drunk = True
-
 def drunk_spelling(s):
     """ This function takes a string and randomly replaces some of 
         the vowels with other vowels. """
@@ -341,7 +335,7 @@ def events():
         rooms["Party house"]["locked"] = False 
         print("You show the guard that you have brought alcohol to the party and he lets you pass.")
 
-    if item_fluffy["used"] == rooms["Utility room"] and item_fluffy["has_lockpicks"] and first_time_event(2):
+    if item_fluff y["used"] == rooms["Utility room"] and item_fluffy["has_lockpicks"] and first_time_event(2):
         rooms["Utility room"]["locked"] = False
         print("") 
 
@@ -492,8 +486,10 @@ def execute_use(item_id, on):
 
             if item["id"] == "vodka":
                 drunk = True
+                print("What?? You feel a bit tipsy after drinking the vodka? Hmm.. it seems like the alcohol has taken its effect on you. For some weird reason, it looks like you have some trouble reading. Maybe eating some food or drinking some water might help?")
             if item["id"] == "water" and drunk == True:
                 drunk = False
+                print("Ahh there you go kiddo, drinking water seems to wear off the effects of alcohol.")
 
             if not(item["reusable"]):
                 del inventory[i]
