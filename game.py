@@ -248,27 +248,13 @@ def zombie_action_cut():
                         print("Fluffy!... what? he looks so soft and comfortable... no? Well I guess I did spoil you.")
                         inventory.append(item_fluffy)
                         return
-                    elif item == item_dynamite:
-                        print("Look at zombie chasing the dynamite stick! *LOUD EXPLOSION*")
-                        print("*A hoard of zombies comes around from the corner*")
-                        print("Maybe if you look around maybe... *Crunch* *Crunch* ... forgot about the runners ... oops.")
-                        return
-                    elif item == item_hammer:
-                        print("*SMACK* *LOUD SCREECH*")
-                        print("*A hoard of zombies comes around from the corner*")
-                        print("Maybe if you look around maybe... *Crunch* *Crunch* ... forgot about the runners ... oops.")
-                        return
-                    else:
-                        print("No! don't throw the phone at him!")
-                        print("*Zombie Calls For Reinforcement* great job! try and think twice next time!")
-                        print("*A hoard of zombies comes around from the corner*")
-                        print("Maybe if you look around maybe... *Crunch* *Crunch* ... forgot about the runners ... oops.")
-                        return
-                else:
+                elif normalised_user_input[1] == item["id"]:
                     print("The item doesnt seem to have an affect on the zombie, try another!")
                     break
-        if not(normalised_user_input[1] in inventory):
-            print("That item is not in your inventory!")
+                else:
+                    print("The item isn't in your inventory")
+                    break
+
 
 
 
@@ -341,7 +327,7 @@ def events():
         rooms["Party house"]["locked"] = False 
         print("You show the guard that you have brought alcohol to the party and he lets you pass.")
 
-    if item_fluffy["used"] == rooms["Utility room"] and item_fluffy["has_lockpicks"] and first_time_event(2):
+    if item_fluffy["used"] == rooms["Utility room"] and item_lockpick in fluffy["items"] and first_time_event(2):
         rooms["Utility room"]["locked"] = False
         print("") 
 
@@ -362,15 +348,6 @@ def events():
         print("The wall to the building collapses and down comes security officer with it,") 
         print("His 'relaxing' has seemed to have turned into 'intense mediation',")
         print("and his torch, from which he wish he could see the light from, rolls across the floor")
-
-
-    if item_key["used"] == rooms["Security office"] and first_time_event(6):
-        rooms["Utility room"]["locked"] = False
-        print("Like usual you trip and slam the door on the way in waking up the officer,")
-        print("He peeks and sees Fluffly right behind you, but being as reckless as you, he throws his torch.")
-        print("*LIGHTS OUT* for you, well have a good sleep my friend.")
-        print("But it will never be the same without me") 
-
 
     return
 
@@ -509,7 +486,10 @@ def execute_use(item_id, on):
             """
             return
         i+=1
-    print(item_id.upper()+ " cannot be used as it has no effect")
+    if item_id in inventory:
+        print(item_id.upper()+ " cannot be used as it has no effect")
+    else:
+        print(item_id.upper()+ " is not in your inventory")
     return
 
     
@@ -624,24 +604,37 @@ def Check_win_condition():
         true_ending = True
         return True 
 
-    elif current_room == room_security_office and item_dynamite["used"] == "Security office":
-        print("tried to use dynamite to blow open door, you blow yourself up")
+    elif current_room == room_security_office and item_key["used"] == rooms["Security office"]:
+        print("Like usual you trip and slam the door on the way in waking up the officer,")
+        print("He peeks and sees Fluffly right behind you, but being as reckless as you, he throws his torch.")
+        print("*LIGHTS OUT* for you, well have a good sleep my friend.")
+        print("But it will never be the same without me") 
         return True
 
-    elif current_room == room_security_office and item_hammer["used"] == "Security office":
-        print("Yu feeling cheeky, didn’t take the electric door sign seriously and used the saw to open the door. Yu felt like Zeus for a split second and a fried potato after that.")
+    elif item_dynamite["used"] == fluffy:
+        print("Look at zombie chasing the dynamite stick! *LOUD EXPLOSION*")
+        print("*A hoard of zombies comes around from the corner*")
+        print("HOW COULD YOU! HE HAD A FAMILY!")
+        print("Crunch* *Crunch* ooooh! midnight family dinners are the best!")
         return True
 
-    elif current_room == room_street and (item_hammer["used"] == room_street or item_dynamite["used"] == room_street):
-        if item_hammer["used"]:
-            print("The saw was a slow weapon, by the time Yu managed to saw through an arm of a zombie, both the legs were already eaten. ")
-        else:
-            print("A portion of the zombies died. BUT, Yu not realising the amount of zombies on the street, a single dynamite was not enough to kill all the zombies. Just in a couple of minutes, Yu became supper for the zombies")
-        return True        
+    elif item_hammer["used"] == fluffy:
+        print("*SMACK*")
+        print("I don't know how to say this kid... but it seems like your too weak to kill the zombie")
+        print("He doesnt seem to happy with you... *LOUD SCREECH*")
+        print("*A hoard of zombies comes around from the corner*")
+        print("Ohh look how cute.. he has a family!") 
+        print("*Crunch* *Crunch* ooooh! midnight family dinners are the best!")
+        return True
+
+    elif item_phone["used"] == fluffy:
+        print("No! don't throw the phone at him!")
+        print("*Zombie Calls For Reinforcement* great job! try and think twice next time!")
+        print("*A hoard of zombies comes around from the corner*")
+        print("Ohh it looks like he called on his gang!") 
+        print("Crunch* *Crunch* you came to the wrong neighbour hood buddy...")
+        return True           
     
-    elif current_room == room_security_office and item_fluffy in inventory:
-        print ("The security guard sees Fluffy and immediately takes out his gun and shoots Fluffy. Seeing Yu having a zombie as a pet is illegal, Yu was taken to jail for it.")
-        return True
 
 
 
