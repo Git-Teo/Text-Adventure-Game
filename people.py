@@ -106,7 +106,7 @@ maypac = {
     """ Tough guy, big in size and looks like he could knock anyone out
     with a single punch.""",
 
-    "speech": "'Did you bring any drinks?'",
+    "speech": "'Did you bring any drinks? You dont seem to be drunk enough to enter the party.",
 
     "items": [],
 
