@@ -1,7 +1,4 @@
 
-
-
-
 item_earplugs = {
     "id": "earplugs",
 
