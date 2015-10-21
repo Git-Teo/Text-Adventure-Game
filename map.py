@@ -8,6 +8,7 @@ blocks = {
     "utility_room": ""
 }
 
+first_time = [True, True, True, True, True, True]
 
 room_your_room = {
     "name": "Your room",
@@ -79,7 +80,7 @@ room_hallway_west = {
 
     "exits": {"west": "Kitchen", "south": "Party house", "north": "Your room", "east": "East Hallway"},
 
-    "items": [item_heart_key],
+    "items": [],
 
     "people": [maypac],
 
@@ -99,7 +100,7 @@ room_hallway_east = {
 
     "exits": {"north": "Chem room", "east": "Comsci room", "west": "West Hallway", "south" : "Street"},
 
-    "items": [item_heart_key],
+    "items": [],
 
     "people": [],
 
@@ -157,7 +158,7 @@ room_street = {
     """Amongst the smell of smoke, the laughter from drunken students on nights out echoes in the air. 
     The floor is a sea of broken glass crunching beneath your feet, with cigarette butts sticking to your shoes. """,
 
-    "exits": {"east": "Security office", "south": "Utility room"},
+    "exits": {"east": "Security office", "south": "Utility room", "north": "East Hallway"},
 
     "items": [],
 
@@ -167,7 +168,9 @@ room_street = {
 
     "blocked_text": "There seems to be a wooden blockade blocking your way out",
 
-    "usable_items": []
+    "usable_items": [],
+
+    "first_arrival" : False
 }
 
 room_security_office = {

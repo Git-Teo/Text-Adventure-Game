@@ -139,9 +139,9 @@ my_friends_wall = {
     "name": "wall",
 
     "description":
-    """There seems to be brittle.""",
+    """It seems weak, wait... it sounds like crying""",
 
-    "speech": "Hello Im a Wall please dont hurt me!",
+    "speech": "*Sniff* Hello Im a Wall, *Sniff* please dont hurt me! *Sniff*",
 
     "items": [],
 
