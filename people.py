@@ -132,7 +132,7 @@ fluffy = {
 
     "item_used_speech": "",
 
-    "usable_items": [item_brain, item_dynamite, item_hammer]
+    "usable_items": [item_brain, item_dynamite, item_hammer, item_phone]
 }
 
 my_friends_wall = {
@@ -141,7 +141,7 @@ my_friends_wall = {
     "description":
     """It seems weak, wait... it sounds like crying""",
 
-    "speech": "*Sob* Hello Im a Wall please dont hurt me! *Sob*",
+    "speech": "*Sniff* Hello Im a Wall, *Sniff* please dont hurt me! *Sniff*",
 
     "items": [],
 

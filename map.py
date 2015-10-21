@@ -167,7 +167,9 @@ room_street = {
 
     "blocked_text": "There seems to be a wooden blockade blocking your way out",
 
-    "usable_items": []
+    "usable_items": [],
+
+    "first_arrival" : False
 }
 
 room_security_office = {

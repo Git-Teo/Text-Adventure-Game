@@ -307,7 +307,7 @@ def zombie_action_cut():
     print()
     while True:
         print("You can:")
-        for item in inv_items:
+        for item in inventory:
             print("USE " +item["id"].upper()+ " to use " +item["name"]+ " on the zombie")
         print()
         print("What do you want to do?")   
@@ -315,10 +315,10 @@ def zombie_action_cut():
         normalised_user_input = normalise_input(user_input)
         for item in inventory:
             if normalised_user_input[0] == "use" and normalised_user_input[1] == item["id"]:
-                if item_usable(item, fluffly):
+                if item_usable(item, fluffy):
                     if item == item_brain:
                         print("Is this how you bring a zombie down? *zombie squats*")
-                        print("huh... he seems to be listening to my voice, move to the left! *zombie moves to the left*,"
+                        print("huh... he seems to be listening to my voice, move to the left! *zombie moves to the left*,")
                         print("to the left again! *zombie puts zombie brain in a box*. Good boy! I think I will name him...")
                         print("Fluffy!... what? he looks so soft and comfortable... no? Well I guess I did spoil you.")
                         return
@@ -394,7 +394,7 @@ def events():
         my_friends_wall["speech"] = "I am just a dead talking wall, nothing to see here."
         print("Dont worry your friends are to drunk to care about the talking wall you just kocked over")
         print("I mean, how is this all real in the first place? Its not like you really have friends do you?")
-        print("Remember your real friend from here is that sweet, luxurious and handsome talking pillow") 
+        print("Remember your real friend? that sweet, luxurious and handsome talking pillow?") 
 
     if item_dynamite["used"] == rooms["Security office"]:
         rooms["Security office"]["locked"] = False
@@ -410,9 +410,6 @@ def events():
         print("*LIGHTS OUT* for you, well have a good sleep my friend.")
         print("But it will never be the same without me") 
 
-    if rooms["Street"]["first_arrival"] == False and current_room == rooms["Street"]:
-        zombie_action_cut()
-        rooms["Street"]["first_arrival"] = True
 
     return
 
@@ -434,6 +431,10 @@ def execute_go(direction):
         current_room = rooms[current_room["exits"][direction]]
         print("You have moved to " + current_room["name"] + ".")
         print()
+
+        if rooms["Street"]["first_arrival"] == False and current_room == rooms["Street"]:
+            zombie_action_cut()
+            rooms["Street"]["first_arrival"] = True
 
     elif is_valid_exit(current_room["exits"], direction):
         print(rooms[current_room["exits"][direction]]["blocked_text"]) 
@@ -545,7 +546,7 @@ def execute_command(command, where):
 
     if 0 == len(command):
         return
-    if command[0] == "go":
+    if command[0] == "go" and where == current_room:
         if len(command) > 1:
             execute_go(command[1])
         else:
