@@ -202,8 +202,10 @@ def print_speech_menu(person, inv):
         print()
 
         talk_input = normalise_input(talk_input)
-        if talk_input[0] == "ignore":
+        if len(talk_input) == 0:
             return  
+        elif talk_input[0] == "ignore":
+            return
         else:
             execute_command(talk_input, person)
 
