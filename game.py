@@ -304,15 +304,25 @@ def zombie_action_cut():
                         print("HUH... HE SEEMS TO BE LISTENING TO MY VOICE, MOVE TO THE LEFT! *ZOMBIE MOVES TO THE LEFT*,")
                         print("TO THE LEFT AGAIN! *ZOMBIE PUTS ZOMBIE BRAIN IN A BOX*. GOOD BOY! I THINK I WILL NAME HIM...")
                         print("FLUFFY!... WHAT? HE LOOKS SO SOFT AND COMFORTABLE... NO? WELL I GUESS I DID SPOIL YOU.")
+                        print()
+                        print("You then procede to unblock the way to the east hall")
                         inventory.append(item_fluffy)
                         return
+                    elif item == item_dynamite:
+                        item_dynamite["used"] = fluffy
+                    elif item == item_phone:
+                        item_phone["used"] = fluffy
+                    else:
+                        item_hammer["used"] = fluffy
                 elif normalised_user_input[1] == item["id"]:
                     print("The item doesnt seem to have an affect on the zombie, try another!")
                     break
                 else:
                     print("The item isn't in your inventory")
                     break
-
+        if normalised_user_input[0] == "exit":
+            exit()
+        Check_win_condition()
 
 
 
@@ -411,7 +421,6 @@ def events():
         print("HIS 'RELAXING' HAS SEEMED TO HAVE TURNED INTO 'INTENSE MEDIATION',")
         print()
         print("and his torch, FROM WHICH HE WISH HE COULD SEE THE LIGHT FROM, rolls across the floor")
-
     return
 
 
@@ -663,28 +672,27 @@ def Check_win_condition():
     if item_dynamite in maypac["items"]:
         print("HE LOOKS ODDLY CONFUSED, WAIT WHY IS HE.... NO NO NO NOOOOOOOOOOO")
         print("*EXPLOSION* THE DYNAMITE BLOWS UP AND KILLS EVERYONE IN THE PARTY INCLUDING YU.")
-        return True
+        print_ending(False)
 
     elif current_room == room_utility_room:
         print("WITH FLUFFYS EXCEPTIONAL PICKLOCK SKILLS, YU WAS ABLE TO GET INTO THE UTILITY ROOM.")
         print("LIKE THE PARTY POOPER THAT HE IS, YU TURNED THE POWER OFF, AND STARTED MAKING HIS WAY BACK")
         print("TO HIS VERY BELOVED, AFFECTIONATE AND HANDSOME PILLOW")
-        true_ending = True
-        return True 
+        print_ending(True) 
 
     elif current_room == room_security_office and item_key["used"] == rooms["Security office"]:
         print("LIKE USUAL YOU TRIP AND SLAM THE DOOR ON THE WAY IN WAKING UP THE OFFICER,")
         print("HE PEEKS AND SEES FLUFFLY RIGHT BEHIND YOU, BUT BEING AS RECKLESS AS YOU, HE THROWS HIS TORCH.")
         print("*BONK* I GUESS ITS LIGHTS OUT FOR YOU KID, WELL HAVE A GOOD SLEEP MY FRIEND.")
         print("BUT ITS NOT REALLY THE SAME WITHOUT ME") 
-        return True
+        print_ending(False)
 
     elif item_dynamite["used"] == fluffy:
         print("LOOK AT ZOMBIE CHASING THE DYNAMITE STICK! *LOUD EXPLOSION*")
         print("*A HOARD OF ZOMBIES COMES AROUND FROM THE CORNER*")
         print("HOW COULD YOU! HE HAD A FAMILY!")
         print("*CRUNCH* *CRUNCH* OOOOH! MIDNIGHT FAMILY DINNERS ARE THE BEST!")
-        return True
+        print_ending(False)
 
     elif item_hammer["used"] == fluffy:
         print("*SMACK*")
@@ -693,7 +701,7 @@ def Check_win_condition():
         print("*A HOARD OF ZOMBIES COMES AROUND FROM THE CORNER*")
         print("OHH LOOK HOW CUTE.. HE HAS A FAMILY!") 
         print("*CRUNCH* *CRUNCH* OOOOH! MIDNIGHT FAMILY DINNERS ARE THE BEST!")
-        return True
+        print_ending(False)
 
     elif item_phone["used"] == fluffy:
         print("NO! DON'T THROW THE PHONE AT HIM!")
@@ -701,14 +709,39 @@ def Check_win_condition():
         print("*A HOARD OF ZOMBIES COMES AROUND FROM THE CORNER*")
         print("OHH IT LOOKS LIKE HE CALLED ON HIS GANG!") 
         print("*CRUNCH* *CRUNCH* YOU CAME TO THE WRONG NEIGHBOUR HOOD BUDDY...")
-        return True   
+        print_ending(False)   
 
     elif item_dynamite["used"] == my_friends_wall:
         print("*EXPLOSION* ...I GUESS THATS ONE WAY TO TAKE DOWN A WALL")
-        print("AND ALL OF THE PEOPLE AT THE PARTY, IF THATS WHAT YOU WERE AIMING FOR?")        
+        print("AND ALL OF THE PEOPLE AT THE PARTY, IF THATS WHAT YOU WERE AIMING FOR?")
+        print_ending(False)
+
+
     
 
-
+def print_ending(real_ending):
+    if real_ending:
+        print("""
+                    8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
+                     Y8,    ,8P d8"'    `"8b  88        88    `8b       d8b       d8' 88 8888b     88  
+                      Y8,  ,8P d8'        `8b 88        88     "8,     ,8"8,     ,8"  88 88 `8b    88  
+                       "8aa8"  88          88 88        88      Y8     8P Y8     8P   88 88  `8b   88  
+                        `88'   88          88 88        88      `8b   d8' `8b   d8'   88 88   `8b  88  
+                         88    Y8,        ,8P 88        88       `8a a8'   `8a a8'    88 88    `8b 88  
+                         88     Y8a.    .a8P  Y8a.    .a8P        `8a8'     `8a8'     88 88     `8888  
+                         88      `"Y8888Y"'    `"Y8888Y"'          `8'       `8'      88 88      `888 
+                                                
+                                                """)
+        exit()
+    else:
+        print("""         ____    ____  ______    __    __      __        ______        _______. _______ 
+                          \   \  /   / /  __  \  |  |  |  |    |  |      /  __  \      /       ||   ____|
+                           \   \/   / |  |  |  | |  |  |  |    |  |     |  |  |  |    |   (----`|  |__   
+                            \_    _/  |  |  |  | |  |  |  |    |  |     |  |  |  |     \   \    |   __|  
+                              |  |    |  `--'  | |  `--'  |    |  `----.|  `--'  | .----)   |   |  |____ 
+                              |__|     \______/   \______/     |_______| \______/  |_______/    |_______|
+                                """)
+        exit() 
 
 # This is the entry point of our program
 def main():
@@ -745,29 +778,8 @@ def main():
         events()
         # Execute the player's command
         execute_command(command, current_room)
-        
-        if Check_win_condition():
-            if true_ending:
-                print("""
-                    8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  
-                     Y8,    ,8P d8"'    `"8b  88        88    `8b       d8b       d8' 88 8888b     88  
-                      Y8,  ,8P d8'        `8b 88        88     "8,     ,8"8,     ,8"  88 88 `8b    88  
-                       "8aa8"  88          88 88        88      Y8     8P Y8     8P   88 88  `8b   88  
-                        `88'   88          88 88        88      `8b   d8' `8b   d8'   88 88   `8b  88  
-                         88    Y8,        ,8P 88        88       `8a a8'   `8a a8'    88 88    `8b 88  
-                         88     Y8a.    .a8P  Y8a.    .a8P        `8a8'     `8a8'     88 88     `8888  
-                         88      `"Y8888Y"'    `"Y8888Y"'          `8'       `8'      88 88      `888 
-                                                
-                                                """)
-            else:
-                 print("""____    ____  ______    __    __      __        ______        _______. _______ 
-                          \   \  /   / /  __  \  |  |  |  |    |  |      /  __  \      /       ||   ____|
-                           \   \/   / |  |  |  | |  |  |  |    |  |     |  |  |  |    |   (----`|  |__   
-                            \_    _/  |  |  |  | |  |  |  |    |  |     |  |  |  |     \   \    |   __|  
-                              |  |    |  `--'  | |  `--'  |    |  `----.|  `--'  | .----)   |   |  |____ 
-                              |__|     \______/   \______/     |_______| \______/  |_______/    |_______|
-                                """)
-            break  
+        Check_win_condition()
+            
 
 
 
