@@ -610,6 +610,14 @@ def main():
 88     "88,  88 88          88         88,   ,d88  Y8a.    .a8P     88       
 88       Y8b 88 88888888888 88888888888 "Y8888P"    `"Y8888Y"'      88""")
 
+    print()
+    print()
+    print("Whats all that racket??!?!")
+    print("Hey Yu, its me, Pillow. Dont you hear that noise??")
+    print("Remember, you have an exam tomorrow at 9am and you need your sleep.")
+    print("Hmm.. I reckon you wouldnt be able to get some sleep with all those noise going on.")
+    print("Maybe you should go check it out. Dont forget about me okay?")
+
     # Main game loop
     while True:
         # Display game status (room description, inventory etc.)
