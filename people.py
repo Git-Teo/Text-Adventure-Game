@@ -29,7 +29,7 @@ jill = {
     She spends most of her time reading comic books and watching Friends and How I
      Met Your Mother. Aside from that, she knows her stuff about computers.""",
 
-    "speech": "It's you again Yu, what is it now? take what you want and leave.",
+    "speech": "'It's you again Yu, what is it now? Take what you want and leave.'",
 
     "items": [item_hammer],
 
@@ -141,7 +141,7 @@ my_friends_wall = {
     "description":
     """It seems weak, wait... it sounds like crying""",
 
-    "speech": "*Sniff* Hello Im a Wall, *Sniff* please dont hurt me! *Sniff*",
+    "speech": "'*Sniff* Hello Im a Wall, *Sniff* please dont hurt me! *Sniff*'",
 
     "items": [],
 
