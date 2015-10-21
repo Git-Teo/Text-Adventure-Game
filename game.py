@@ -613,7 +613,7 @@ def main():
     print()
     print()
     print("Whats all that racket??!?!")
-    print("Hey Yu, its me, Pillow. Dont you hear that noise??")
+    print("Hey Yu, its me, pillow. Dont you hear that noise??")
     print("Remember, you have an exam tomorrow at 9am and you need your sleep.")
     print("Hmm.. I reckon you wouldnt be able to get some sleep with all those noise going on.")
     print("Maybe you should go check it out. Dont forget about me okay?")
