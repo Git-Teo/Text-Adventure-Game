@@ -7,6 +7,7 @@ from sys import exit
 from people import *
 
 true_ending = ""
+first_time_party = True
 
 def is_drunk():
     # waiting for using items code to finish
@@ -35,6 +36,7 @@ def drunk_spelling(s):
             output += char
 
     return output
+
 
 
 
@@ -102,20 +104,28 @@ def print_room(room):
     in the room, the list of items is printed next followed by a blank line
     (use print_room_items() for this).
     """
+    global first_time_party
     # Display room name
     print("--------------------------------------------------------------------------------")
-    print()
     rn = room["name"].upper()
     if drunk:
         rn = drunk_spelling(rn)
     print(rn)
     print()
 
+    
     # Display room description
     rd = room["description"]
     if drunk:
         rd = drunk_spelling(rd)
     print(rd)
+    print()
+    if first_time_party and current_room == room_party_house:
+        print("HEY YU, MY PILLOW SENSES ARE TINGLING, OHH NEVER MIND, YOU MAKE A PILLOW LOOK AS POWERFUL AS A SUPERHERO") 
+        print("WITH THE LACK OF POWER YOU HAVE HERE. LET ME DO THE THINKING... AHH! THATS IT! POWER!")
+        print("THE UTILITY ROOM, YOU CAN SHUT DOWN THE POWER THERE, OH IM SUCH A GENIUS")
+        print("OH STOP IT ME! *BLUSHES*")
+        first_time_party = False
     print()
 
     # Print items using previously defined functions
@@ -225,8 +235,8 @@ def zombie_action_cut():
     defeat the zombie (AKA fluffy).
     """
 
-    print("You stumble and fall out of the party room from the first floor.")
-    print("Pick yourself up kid! And face the zombie that your 'friends' forgot to mention was walking about outside your house!")
+    print("YOU STUMBLE AND FALL OUT OF THE PARTY ROOM FROM THE FIRST FLOOR.")
+    print("PICK YOURSELF UP KID! AND FACE THE ZOMBIE THAT YOUR 'FRIENDS' FORGOT TO MENTION WAS WALKING ABOUT OUTSIDE YOUR HOUSE!")
     print()
     while True:
         print("You can:")
@@ -242,10 +252,10 @@ def zombie_action_cut():
             if normalised_user_input[0] == "use" and normalised_user_input[1] == item["id"]:
                 if item_usable(item, fluffy):
                     if item == item_brain:
-                        print("Is this how you bring a zombie down? *zombie squats*")
-                        print("huh... he seems to be listening to my voice, move to the left! *zombie moves to the left*,")
-                        print("to the left again! *zombie puts zombie brain in a box*. Good boy! I think I will name him...")
-                        print("Fluffy!... what? he looks so soft and comfortable... no? Well I guess I did spoil you.")
+                        print("IS THIS HOW YOU BRING A ZOMBIE DOWN? *ZOMBIE SQUATS*")
+                        print("HUH... HE SEEMS TO BE LISTENING TO MY VOICE, MOVE TO THE LEFT! *ZOMBIE MOVES TO THE LEFT*,")
+                        print("TO THE LEFT AGAIN! *ZOMBIE PUTS ZOMBIE BRAIN IN A BOX*. GOOD BOY! I THINK I WILL NAME HIM...")
+                        print("FLUFFY!... WHAT? HE LOOKS SO SOFT AND COMFORTABLE... NO? WELL I GUESS I DID SPOIL YOU.")
                         inventory.append(item_fluffy)
                         return
                 elif normalised_user_input[1] == item["id"]:
@@ -329,25 +339,30 @@ def events():
 
     if item_fluffy["used"] == rooms["Utility room"] and item_lockpick in fluffy["items"] and first_time_event(2):
         rooms["Utility room"]["locked"] = False
-        print("") 
 
     if item_heartkey["used"] == rooms["Comsci room"] and first_time_event(3):
         rooms["Comsci room"]["locked"] = False
-        print("You open the door only to see your flat mate hacking away at an online game, no suprise after all.")
+        print("You open the door only to see your flat mate hacking away at an online game.")
+        print()
+        print("SURPRISE! NO SURPRISE!")
 
     if item_hammer["used"] == my_friends_wall and first_time_event(4):
         rooms["Street"]["locked"] = False
         rooms["Party house"]["exits"]["east"] = "Street"
         my_friends_wall["speech"] = "I am just a dead talking wall, nothing to see here."
-        print("Dont worry your friends are too drunk to care about the talking wall you just knocked over.")
-        print("I mean, how is this all real in the first place? Its not like you really have friends do you?")
-        print("Remember your real friend? That sweet, luxurious and handsome talking pillow?") 
+        print("DON'T WORRY YOUR FRIENDS ARE TOO DRUNK TO CARE")
+        print("ABOUT THE TALKING WALL YOU JUST KNOCKED OVER.")
+        print("I MEAN, HOW IS THIS ALL REAL IN THE FIRST PLACE?")
+        print("ITS NOT LIKE YOU REALLY HAVE FRIENDS DO YOU?")
+        print("REMEMBER YOUR REAL FRIEND? THAT SWEET, LUXURIOUS AND HANDSOME TALKING PILLOW?") 
 
     if item_dynamite["used"] == rooms["Security office"]  and first_time_event(5):
         rooms["Security office"]["locked"] = False
-        print("The wall to the building collapses and down comes security officer with it,") 
-        print("His 'relaxing' has seemed to have turned into 'intense mediation',")
-        print("and his torch, from which he wish he could see the light from, rolls across the floor")
+        print("The wall to the building collapses and down comes security officer with it.")
+        print()
+        print("HIS 'RELAXING' HAS SEEMED TO HAVE TURNED INTO 'INTENSE MEDIATION',")
+        print()
+        print("and his torch, FROM WHICH HE WISH HE COULD SEE THE LIGHT FROM, rolls across the floor")
 
     return
 
@@ -596,44 +611,51 @@ def Check_win_condition():
     global true_ending
 
     if item_dynamite in maypac["items"]:
-        print ("Maypac is confused, didn’t think it was actual dynamite and sets it off! The dynamite blows up and kills everyone in the party including Yu.")
+        print("HE LOOKS ODDLY CONFUSED, WAIT WHY IS HE.... NO NO NO NOOOOOOOOOOO")
+        print("*EXPLOSION* THE DYNAMITE BLOWS UP AND KILLS EVERYONE IN THE PARTY INCLUDING YU.")
         return True
 
     elif current_room == room_utility_room:
-        print ("With Fluffys exceptional picklock skills, Yu was able to get into the utility room.Yu turned the power off and managed to get sufficient sleep and aced the exam.")
+        print("WITH FLUFFYS EXCEPTIONAL PICKLOCK SKILLS, YU WAS ABLE TO GET INTO THE UTILITY ROOM.")
+        print("LIKE THE PARTY POOPER THAT HE IS, YU TURNED THE POWER OFF, AND STARTED MAKING HIS WAY BACK")
+        print("TO HIS VERY BELOVED, AFFECTIONATE AND HANDSOME PILLOW")
         true_ending = True
         return True 
 
     elif current_room == room_security_office and item_key["used"] == rooms["Security office"]:
-        print("Like usual you trip and slam the door on the way in waking up the officer,")
-        print("He peeks and sees Fluffly right behind you, but being as reckless as you, he throws his torch.")
-        print("*LIGHTS OUT* for you, well have a good sleep my friend.")
-        print("But it will never be the same without me") 
+        print("LIKE USUAL YOU TRIP AND SLAM THE DOOR ON THE WAY IN WAKING UP THE OFFICER,")
+        print("HE PEEKS AND SEES FLUFFLY RIGHT BEHIND YOU, BUT BEING AS RECKLESS AS YOU, HE THROWS HIS TORCH.")
+        print("*BONK* I GUESS ITS LIGHTS OUT FOR YOU KID, WELL HAVE A GOOD SLEEP MY FRIEND.")
+        print("BUT ITS NOT REALLY THE SAME WITHOUT ME") 
         return True
 
     elif item_dynamite["used"] == fluffy:
-        print("Look at zombie chasing the dynamite stick! *LOUD EXPLOSION*")
-        print("*A hoard of zombies comes around from the corner*")
+        print("LOOK AT ZOMBIE CHASING THE DYNAMITE STICK! *LOUD EXPLOSION*")
+        print("*A HOARD OF ZOMBIES COMES AROUND FROM THE CORNER*")
         print("HOW COULD YOU! HE HAD A FAMILY!")
-        print("Crunch* *Crunch* ooooh! midnight family dinners are the best!")
+        print("*CRUNCH* *CRUNCH* OOOOH! MIDNIGHT FAMILY DINNERS ARE THE BEST!")
         return True
 
     elif item_hammer["used"] == fluffy:
         print("*SMACK*")
-        print("I don't know how to say this kid... but it seems like your too weak to kill the zombie")
-        print("He doesnt seem to happy with you... *LOUD SCREECH*")
-        print("*A hoard of zombies comes around from the corner*")
-        print("Ohh look how cute.. he has a family!") 
-        print("*Crunch* *Crunch* ooooh! midnight family dinners are the best!")
+        print("I DON'T KNOW HOW TO SAY THIS KID... BUT IT SEEMS LIKE YOUR TOO WEAK TO KILL THE ZOMBIE")
+        print("HE DOESNT SEEM TO HAPPY WITH YOU... *LOUD SCREECH*")
+        print("*A HOARD OF ZOMBIES COMES AROUND FROM THE CORNER*")
+        print("OHH LOOK HOW CUTE.. HE HAS A FAMILY!") 
+        print("*CRUNCH* *CRUNCH* OOOOH! MIDNIGHT FAMILY DINNERS ARE THE BEST!")
         return True
 
     elif item_phone["used"] == fluffy:
-        print("No! don't throw the phone at him!")
-        print("*Zombie Calls For Reinforcement* great job! try and think twice next time!")
-        print("*A hoard of zombies comes around from the corner*")
-        print("Ohh it looks like he called on his gang!") 
-        print("Crunch* *Crunch* you came to the wrong neighbour hood buddy...")
-        return True           
+        print("NO! DON'T THROW THE PHONE AT HIM!")
+        print("*ZOMBIE CALLS FOR REINFORCEMENT* GREAT JOB! TRY AND THINK TWICE NEXT TIME!")
+        print("*A HOARD OF ZOMBIES COMES AROUND FROM THE CORNER*")
+        print("OHH IT LOOKS LIKE HE CALLED ON HIS GANG!") 
+        print("*CRUNCH* *CRUNCH* YOU CAME TO THE WRONG NEIGHBOUR HOOD BUDDY...")
+        return True   
+
+    elif item_dynamite["used"] == my_friends_wall:
+        print("*EXPLOSION* ...I GUESS THATS ONE WAY TO TAKE DOWN A WALL")
+        print("AND ALL OF THE PEOPLE AT THE PARTY, IF THATS WHAT YOU WERE AIMING FOR?")        
     
 
 
@@ -652,12 +674,14 @@ def main():
 88       Y8b 88 88888888888 88888888888 "Y8888P"    `"Y8888Y"'      88""")
 
     #Introduction to the game
-    print("")
-    print("")
-    print("Whats all that racket going on??!?!")
-    print("Hey Yu, its me pillow. Do you hear all that noise??")
-    print("I know its 12am but i dont think you can continue sleeping with that constant distubance could you?")
-    print("I reckon you should go check out whats happening.")
+    print()
+    print()
+    print("WHATS ALL THAT RACKET GOING ON??!?!")
+    print("HEY YU! ITS ME PILLOW! DO YOU HEAR ALL THAT NOISE?? NO NOT ME! DOWNSTAIRS!")
+    print("I KNOW ITS 12AM") 
+    print("BUT I DONT THINK ITS NOT GOING TO LET ME OR YOU CAN SLEEP ANY TIME SOON.")
+    print("GO CHECK OUT WHATS HAPPENING YU.")
+    print()
 
     # Main game loop
     while True:
@@ -672,8 +696,6 @@ def main():
         execute_command(command, current_room)
         
         if Check_win_condition():
-            
-
             if true_ending:
                 print("""
                     8b        d8 ,ad8888ba,   88        88    I8,        8        ,8I 88 888b      88  

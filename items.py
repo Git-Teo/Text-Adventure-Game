@@ -139,7 +139,7 @@ item_vodka = {
     
     "name": "a bottle of vodka",
 
-    "description": "  ",
+    "description": "",
 
     "mass": 3,
 
