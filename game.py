@@ -318,6 +318,20 @@ def is_move_possible(next_room):
     else:
         return True
 
+def print_help():
+    print("You may use items on yourself by using the command 'USE' followed by the object name (ID)")
+    print("You may want to move in a certain direction, by using the command 'GO' followed by the direction you want to go in")
+    print("You may want to drop items, by using the command 'DROP' followed by the object name (ID)")
+    print("You may talk to people in the same room by using the command 'TALK' followed by the persons name")
+    print("You may use items on people whilst talking to them by using the command 'USE' followed by the object name (ID)")
+    print("You may want to unlock rooms by using keys, by using the command 'USE' followed by the object name (ID),")
+    print("followed by the direction of the room you want to open, for example 'east'")
+    print("You may give items to characters whilst talking to them, by using the command 'GIVE' followed by the object name")
+    print("You may want to see your inventory weight, by using the command 'INVENTORY' followed by the command 'WEIGHT'")
+    print("You may want to knock details about an item, by using the command 'INFO' followed by the the object name (ID)")
+    print("You may want to see possible commands, by using the command 'SHOW'")
+    print("You may want to exit the game, by using the command 'EXIT'")
+
 def events():
 
     if (item_vodka["used"] == maypac or drunk == True)  and first_time_event(1):
@@ -348,7 +362,7 @@ def events():
         print("and his torch, from which he wish he could see the light from, rolls across the floor")
 
 
-    if item_fluffy["used"] == rooms["Security office"] and first_time_event(6):
+    if item_key["used"] == rooms["Security office"] and first_time_event(6):
         rooms["Utility room"]["locked"] = False
         print("Like usual you trip and slam the door on the way in waking up the officer,")
         print("He peeks and sees Fluffly right behind you, but being as reckless as you, he throws his torch.")
@@ -435,6 +449,17 @@ def execute_drop(item_id, where):
     print(item_id.upper()+ " is not in your inventory")
     return
 
+def execute_item_info(item_id):
+    #returns item description
+    #item_id is the item id given in the command
+    i = 0
+    for item in inventory:
+        if item_id == item["id"]:            
+            print(inventory[i]["description"])
+            return
+        i += 1
+    print("There is no '" + item_id.upper()+ "' in your inventory.")
+    return
 
 def execute_talk(person, where):
     """This function is called then the player enters the TALK <person> command. It takes a person (see people.py) 
@@ -528,20 +553,28 @@ def execute_command(command, where):
         else:
             print("Use what?")
 
-    elif command[0] == "show" :
-        if len(command) > 1:
-            execute_talk(command[1], where)
-        else:
-            print("Talk to who?")
+    elif command[0] == "show":
+        print_menu(current_room["exits"], current_room["items"], inventory)
 
-    elif command[0] == "exit":
+    elif command[0] == "help":
+        print_help()
+
+    elif command[0] == "info":
         if len(command) == 1:
-            exit()
+            print("Info on what?")
+        elif len(command) == 2:
+            #print item desc
+            execute_item_info(command[1])
 
     elif command[0] =="inventory":
         if len(command) == 2 and command[1] == "weight":
             #prints inv weight.
             print(str(get_inv_weight(inventory)) + " Kilograms")
+
+    elif command[0] == "exit":
+        if len(command) == 1:
+            exit()
+
 
     else:
         print("This makes no sense.")
@@ -556,8 +589,9 @@ def menu(exits, room_items, inv_items):
     function before being returned.
     """
 
-    print_menu(exits, room_items, inv_items)
-
+    
+    print("SHOW OPTIONS to show possible commands")
+    print("HELP to show command layouts")
     # Read player's input
     user_input = input("> ")
     print()
@@ -630,8 +664,6 @@ def main():
         print_inventory_items(inventory)
 
         # Show the menu with possible actions and ask the player
-        print("SHOW OPTIONS to show possible commands")
-        print("HELP to show command layouts")
         command = menu(current_room["exits"], current_room["items"], inventory)
         events()
         # Execute the player's command

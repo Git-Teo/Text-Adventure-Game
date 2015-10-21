@@ -11,7 +11,7 @@ toby = {
 
     "speech": "'Oh hey there Yu, how's it going? Do you need anything?? *Wink wink*'",
 
-    "items": [item_dynamite, item_vodka],
+    "items": [item_vodka],
 
     "take": False,
 
