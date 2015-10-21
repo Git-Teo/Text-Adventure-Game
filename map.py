@@ -136,7 +136,9 @@ room_party_house = {
     "description":
     """Much to your dismay, the scene is worse than you thought. 
     This house has been converted to look like Prism on a Friday night, with strobe lights, huge speakers, a DJ table and a DIY bar.
-    There's at least 50 people squeezed into the house, with alcohol spilling over carpets and making all the surfaces sticky underfoot. """,
+    There's at least 50 people squeezed into the house, with alcohol spilling over carpets and making all the surfaces sticky underfoot. 
+
+    Hey Yu, pillow again here. It doesnt seem like you can do anything here at the party to lower down the noise. Maybe you should go find the power sourse and turn it off?""",
 
     "exits": {"north": "West Hallway"},
 
