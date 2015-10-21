@@ -36,7 +36,7 @@ item_broom = {
 
 item_heartkey = {
     #used to open one of your flatmates rooms
-    "id": "key",
+    "id": "heartkey",
 
     "name": "a key",
 

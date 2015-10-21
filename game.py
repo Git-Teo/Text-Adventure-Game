@@ -121,12 +121,6 @@ def print_room(room):
     # Print items using previously defined functions
     print_room_items(room)
 
-
-
-    #
-    # COMPLETE ME!
-    #
-
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
     exit taken from this dictionary). It returns the name of the room into which
@@ -294,7 +288,7 @@ def get_inv_weight(inventory):
     for i in inventory:
         weight = 0
         weight += i["mass"]
-        return weight
+    return weight
 
 def item_usable(item, on):
     """
@@ -352,10 +346,6 @@ def events():
 
 
     return
-
-
-
-
 
 
 def execute_go(direction):
@@ -449,6 +439,18 @@ def execute_talk(person, where):
     print(person+ " is not in this room")
     return
 
+def execute_info(item_id):
+    #returns item description
+    #item_id is the item id given in the command
+
+    i = 0
+    for item in inventory:
+        if item_id == item["id"]:            
+            print(inventory[i]["description"])
+            return
+        i += 1
+    print("There is no '" + item_id.upper()+ "' in your inventory.")
+    return
 
 def execute_use(item_id, on):
     global drunk 
@@ -465,15 +467,6 @@ def execute_use(item_id, on):
 
             if not(item["reusable"]):
                 del inventory[i]
-            """if on != current_room:
-                print()
-                print(on["item_used_speech"])
-                print()
-            else:
-                print()
-                print()
-                print()
-            """
             return
         i+=1
     print(item_id.upper()+ " cannot be used as it has no effect")
@@ -522,14 +515,24 @@ def execute_command(command, where):
         else:
             print("Use what?")
 
+    #exit game command
     elif command[0] == "exit":
         if len(command) == 1:
             exit()
+
+    #get inventory weight command
     elif command[0] =="inventory":
         if len(command) == 2 and command[1] == "weight":
             #prints inv weight.
-            print(str(get_inv_weight(inventory)) + " Kilograms")
+            print(str(get_inv_weight()) + " Kilograms")
 
+    #get item info command
+    elif command[0] == "info":
+        if len(command) == 1:
+                print("Info on what?")
+        elif len(command) == 2:
+            #print item desc
+            execute_info(command[1])
     else:
         print("This makes no sense.")
 
