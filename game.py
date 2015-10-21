@@ -737,22 +737,19 @@ def print_ending(real_ending):
                                                 """)
         exit()
     else:
-        print("""                                                                      
-                                                                      
-   0b     OS   U O   UO   SE        EY     EYOU8     CYOUE   YOU LOS   
-    Y8   UP   SE OU   LE   LO       OS     LO  YO   SE       EY   
-     Y8 EY   LO   OU  OS   U        OL     U    EY  DL       LO        
-       LO    U    EY  KL   YO       OU     YO   OS  OU       U         
-       OU    YO   OS  OU   SE       EY     SE   PL   YOU L   YOU LO    
-       EY    SE    L  EY   LO       OS     LO   OU      OU   SE        
-       SE    LO   OU  OS   U        PL     U    EY      EY   LO        
-       LO    U    EY   L  EYO       OU     YO  LOS      OS   U         
-       OU     OU LO    U LOS        EYOU    EYOU    EYOUTG   YOU LOS   
-                                                                      
-                                                         
-                                 """)
-             
-        exit() 
+        print("""
+          
+  0b     OS   U O    OO   EH       EY      YOU8     CYOUE   YOU LOS   
+   Y8   UP   SE OU   LE   LO       OS     LO  YO   SE       EY   
+    Y8 EY   LO   OU  OS   U        OL     U    EY  DL       LO        
+      LO    U    EY  KL   YO       OU     YO   OS  OU       U         
+      OU    YO   OS  OU   SE       EY     SE   PL   YOU L   YOU LO    
+      EY    SE    L  EY   LO       OS     LO   OU      OU   SE        
+      SE    LO   OU  OS   U        PL     U    EY      EY   LO        
+      LO    U    EY  LL  EYO       OU     YO  LOS      OS   U         
+      OU     OU LO    U LOS        EYOU    EYOU    EYOUTG   YOU LOS   
+                                                                                            
+                                """)
 
 # This is the entry point of our program
 def main():
