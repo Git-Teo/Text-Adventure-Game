@@ -734,12 +734,19 @@ def print_ending(real_ending):
                                                 """)
         exit()
     else:
-        print("""         ____    ____  ______    __    __      __        ______        _______. _______ 
-                          \   \  /   / /  __  \  |  |  |  |    |  |      /  __  \      /       ||   ____|
-                           \   \/   / |  |  |  | |  |  |  |    |  |     |  |  |  |    |   (----`|  |__   
-                            \_    _/  |  |  |  | |  |  |  |    |  |     |  |  |  |     \   \    |   __|  
-                              |  |    |  `--'  | |  `--'  |    |  `----.|  `--'  | .----)   |   |  |____ 
-                              |__|     \______/   \______/     |_______| \______/  |_______/    |_______|
+        print("""                                                                      
+                                                                      
+  0b     OS   U O    OO   EH       EY     EYOU8     CYOUE   YOU LOS   
+   Y8   UP   SE OU   LE   LO       OS     LO  YO   SE       EY   
+    Y8 EY   LO   OU  OS   U        OL     U    EY  DL       LO        
+      LO    U    EY  KL   YO       OU     YO   OS  OU       U         
+      OU    YO   OS  OU   SE       EY     SE   PL   YOU L   YOU LO    
+      EY    SE    L  EY   LO       OS     LO   OU      OU   SE        
+      SE    LO   OU  OS   U        PL     U    EY      EY   LO        
+      LO    U    EY  LL  EYO       OU     YO  LOS      OS   U         
+      OU     OU LO    U LOS        EYOU    EYOU    EYOUTG   YOU LOS   
+                                                                      
+                                                         
                                 """)
         exit() 
 
