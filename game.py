@@ -9,12 +9,6 @@ from people import *
 true_ending = ""
 first_time_party = True
 
-def is_drunk():
-    # waiting for using items code to finish
-    # pass
-    global drunk
-    drunk = True
-
 def drunk_spelling(s):
     """ This function takes a string and randomly replaces some of 
         the vowels with other vowels. """
@@ -484,8 +478,10 @@ def execute_use(item_id, on):
 
             if item["id"] == "vodka":
                 drunk = True
+                print("What?? You feel a bit tipsy after drinking the vodka? Hmm.. it seems like the alcohol has taken its effect on you. For some weird reason, it looks like you have some trouble reading. Maybe eating some food or drinking some water might help?")
             if item["id"] == "water" and drunk == True:
                 drunk = False
+                print("Ahh there you go kiddo, drinking water seems to wear off the effects of alcohol.")
 
             if not(item["reusable"]):
                 del inventory[i]
