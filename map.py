@@ -68,7 +68,7 @@ room_comsci_room = {
 
     "blocked_text": "*knock* *knock*, it surprisingly seems like your flat mate has gone out, you notice the lock to the door has an odd pattern",
 
-    "usable_items": [item_heart_key]
+    "usable_items": [item_key]
 }
 
 room_hallway_west = {
@@ -119,7 +119,7 @@ room_kitchen = {
 
     "exits": {"east": "West Hallway"},
 
-    "items": [],
+    "items": [item_heartkey],
 
     "people": [],
 

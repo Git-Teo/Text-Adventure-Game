@@ -29,7 +29,7 @@ jill = {
     She spends most of her time reading comic books and watching Friends and How I
      Met Your Mother. Aside from that, she knows her stuff about computers.""",
 
-    "speech": "It's you again Yu, what is it now? take what you want and leave.",
+    "speech": "'It's you again Yu, what is it now? Take what you want and leave.'",
 
     "items": [item_hammer],
 
@@ -49,7 +49,7 @@ eric = {
 
     "speech": "'Everyday I'm shuffling!!!!'",
 
-    "items": [],
+    "items": [item_water],
 
     "take": False,
 
@@ -84,7 +84,7 @@ sally = {
     "name": "sally",
 
     "description":
-    """ Sally is medical student, she's friendly, loves to socialize and meeting new people. Sometiems 
+    """ Sally is medical student, she's friendly, loves to socialize and meeting new people. Sometimes 
     maybe a little too enthusiastic and a little weird.""",
 
     "speech": "'HI YOU!!!!! COME JOIN THE PARTY!!!'",
@@ -106,7 +106,7 @@ maypac = {
     """ Tough guy, big in size and looks like he could knock anyone out
     with a single punch.""",
 
-    "speech": "'Did you bring any drinks?'",
+    "speech": "'Did you bring any drinks? You dont seem to be drunk enough to enter the party.",
 
     "items": [],
 
@@ -141,7 +141,7 @@ my_friends_wall = {
     "description":
     """It seems weak, wait... it sounds like crying""",
 
-    "speech": "*Sniff* Hello Im a Wall, *Sniff* please dont hurt me! *Sniff*",
+    "speech": "'*Sniff* Hello Im a Wall, *Sniff* please dont hurt me! *Sniff*'",
 
     "items": [],
 

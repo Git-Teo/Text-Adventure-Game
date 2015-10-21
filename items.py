@@ -1,3 +1,7 @@
+
+
+
+
 item_earplugs = {
     "id": "earplugs",
 
@@ -30,11 +34,11 @@ item_broom = {
     "reusable": True
 }
 
-item_heart_key = {
+item_key = {
     #used to open one of your flatmates rooms
-    "id": "heartkey",
+    "id": "key",
 
-    "name": "a key with a heart symbol on it",
+    "name": "a key",
 
     "description": "This has a heart symbol on it. You recall seeing someone holding this key before",
 
