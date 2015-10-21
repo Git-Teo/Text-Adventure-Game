@@ -374,6 +374,12 @@ def is_move_possible(next_room):
     else:
         return True
 
+def show_item(item_id):
+    for item in inventory:
+        if item["id"] == item_id:
+            return item
+    return
+
 def print_help():
     print("You may use items on yourself by using the command 'USE' followed by the object name (ID)")
     print("You may want to move in a certain direction, by using the command 'GO' followed by the direction you want to go in")
@@ -394,17 +400,19 @@ def events():
         """This function prints messages to the console when defined events are detected. It is called in main()"""
         rooms["Party house"]["locked"] = False 
         print("You show the guard that you have brought alcohol to the party and he lets you pass.")
+        print()
 
-    if item_fluffy["used"] == rooms["Utility room"] and item_lockpick in fluffy["items"] and first_time_event(2):
+    elif item_fluffy["used"] == rooms["Utility room"] and item_lockpick in fluffy["items"] and first_time_event(2):
         rooms["Utility room"]["locked"] = False
 
-    if item_heartkey["used"] == rooms["Comsci room"] and first_time_event(3):
+    elif item_heartkey["used"] == rooms["Comsci room"] and first_time_event(3):
         rooms["Comsci room"]["locked"] = False
         print("You open the door only to see your flat mate hacking away at an online game.")
         print()
         print("SURPRISE! NO SURPRISE!")
+        print()
 
-    if item_hammer["used"] == my_friends_wall and first_time_event(4):
+    elif item_hammer["used"] == my_friends_wall and first_time_event(4):
         rooms["Street"]["locked"] = False
         rooms["Party house"]["exits"]["east"] = "Street"
         my_friends_wall["speech"] = "I am just a dead talking wall, nothing to see here."
@@ -412,20 +420,24 @@ def events():
         print("ABOUT THE TALKING WALL YOU JUST KNOCKED OVER.")
         print("I MEAN, HOW IS THIS ALL REAL IN THE FIRST PLACE?")
         print("ITS NOT LIKE YOU REALLY HAVE FRIENDS DO YOU?")
-        print("REMEMBER YOUR REAL FRIEND? THAT SWEET, LUXURIOUS AND HANDSOME TALKING PILLOW?") 
+        print("REMEMBER YOUR REAL FRIEND? THAT SWEET, LUXURIOUS AND HANDSOME TALKING PILLOW?")
+        print() 
 
-    if item_dynamite["used"] == rooms["Security office"]  and first_time_event(5):
+    elif item_dynamite["used"] == rooms["Security office"]  and first_time_event(5):
         rooms["Security office"]["locked"] = False
         print("The wall to the building collapses and down comes security officer with it.")
         print()
         print("HIS 'RELAXING' HAS SEEMED TO HAVE TURNED INTO 'INTENSE MEDIATION',")
         print()
         print("and his torch, FROM WHICH HE WISH HE COULD SEE THE LIGHT FROM, rolls across the floor")
+        print()
+
+    elif item_key["used"] == room_security_office:
+        room_security_office["locked"] = False
+        print("The door to the security office has been unlocked")
+        print()
+
     return
-
-
-
-
 
 
 def execute_go(direction):
@@ -530,7 +542,6 @@ def execute_talk(person, where):
     print(person+ " is not in this room")
     return
 
-
 def execute_use(item_id, on):
     global drunk 
     i=0
@@ -549,18 +560,10 @@ def execute_use(item_id, on):
             if not(item["reusable"]):
                 del inventory[i]
 
-            """if on != current_room:
-                print()
-                print(on["item_used_speech"])
-                print()
-            else:
-                print()
-                print()
-                print()
-            """
             return
         i+=1
-    if item_id in inventory:
+
+    if show_item(item_id) in inventory:
         print(item_id.upper()+ " cannot be used as it has no effect")
     else:
         print(item_id.upper()+ " is not in your inventory")
@@ -680,7 +683,7 @@ def Check_win_condition():
         print("TO HIS VERY BELOVED, AFFECTIONATE AND HANDSOME PILLOW")
         print_ending(True) 
 
-    elif current_room == room_security_office and item_key["used"] == rooms["Security office"]:
+    elif current_room == room_security_office and item_key["used"] == rooms["Security office"] and item_dynamite["used"] != rooms["Security office"]:
         print("LIKE USUAL YOU TRIP AND SLAM THE DOOR ON THE WAY IN WAKING UP THE OFFICER,")
         print("HE PEEKS AND SEES FLUFFLY RIGHT BEHIND YOU, BUT BEING AS RECKLESS AS YOU, HE THROWS HIS TORCH.")
         print("*BONK* I GUESS ITS LIGHTS OUT FOR YOU KID, WELL HAVE A GOOD SLEEP MY FRIEND.")
@@ -734,13 +737,21 @@ def print_ending(real_ending):
                                                 """)
         exit()
     else:
-        print("""         ____    ____  ______    __    __      __        ______        _______. _______ 
-                          \   \  /   / /  __  \  |  |  |  |    |  |      /  __  \      /       ||   ____|
-                           \   \/   / |  |  |  | |  |  |  |    |  |     |  |  |  |    |   (----`|  |__   
-                            \_    _/  |  |  |  | |  |  |  |    |  |     |  |  |  |     \   \    |   __|  
-                              |  |    |  `--'  | |  `--'  |    |  `----.|  `--'  | .----)   |   |  |____ 
-                              |__|     \______/   \______/     |_______| \______/  |_______/    |_______|
-                                """)
+        print("""                                                                      
+                                                                      
+   0b     OS   U O   UO   SE        EY     EYOU8     CYOUE   YOU LOS   
+    Y8   UP   SE OU   LE   LO       OS     LO  YO   SE       EY   
+     Y8 EY   LO   OU  OS   U        OL     U    EY  DL       LO        
+       LO    U    EY  KL   YO       OU     YO   OS  OU       U         
+       OU    YO   OS  OU   SE       EY     SE   PL   YOU L   YOU LO    
+       EY    SE    L  EY   LO       OS     LO   OU      OU   SE        
+       SE    LO   OU  OS   U        PL     U    EY      EY   LO        
+       LO    U    EY   L  EYO       OU     YO  LOS      OS   U         
+       OU     OU LO    U LOS        EYOU    EYOU    EYOUTG   YOU LOS   
+                                                                      
+                                                         
+                                 """)
+             
         exit() 
 
 # This is the entry point of our program
