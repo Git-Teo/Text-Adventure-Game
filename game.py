@@ -736,7 +736,7 @@ def print_ending(real_ending):
     else:
         print("""                                                                      
                                                                       
-  0b     OS   U O    OO   EH       EY     EYOU8     CYOUE   YOU LOS   
+  0b     OS   U O    OO   EH       EY      YOU8     CYOUE   YOU LOS   
    Y8   UP   SE OU   LE   LO       OS     LO  YO   SE       EY   
     Y8 EY   LO   OU  OS   U        OL     U    EY  DL       LO        
       LO    U    EY  KL   YO       OU     YO   OS  OU       U         
