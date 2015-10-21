@@ -658,6 +658,13 @@ def main():
 88     "88,  88 88          88         88,   ,d88  Y8a.    .a8P     88       
 88       Y8b 88 88888888888 88888888888 "Y8888P"    `"Y8888Y"'      88""")
 
+    #Introduction to the game
+    print("")
+    print("")
+    print("Whats all that racket going on??!?!")
+    print("Hey Yu, its me pillow. Do you hear all that noise??")
+    print("I know its 12am but i dont think you can continue sleeping with that constant distubance could you?")
+    print("I reckon you should go check out whats happening.")
 
     # Main game loop
     while True:
