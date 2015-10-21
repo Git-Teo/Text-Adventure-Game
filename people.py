@@ -49,7 +49,7 @@ eric = {
 
     "speech": "'Everyday I'm shuffling!!!!'",
 
-    "items": [],
+    "items": [item_water],
 
     "take": False,
 
