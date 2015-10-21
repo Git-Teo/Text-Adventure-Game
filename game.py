@@ -301,9 +301,12 @@ def zombie_action_cut():
                 if item_usable(item, fluffy):
                     if item == item_brain:
                         print("IS THIS HOW YOU BRING A ZOMBIE DOWN? *ZOMBIE SQUATS*")
-                        print("HUH... HE SEEMS TO BE LISTENING TO MY VOICE, MOVE TO THE LEFT! *ZOMBIE MOVES TO THE LEFT*,")
-                        print("TO THE LEFT AGAIN! *ZOMBIE PUTS ZOMBIE BRAIN IN A BOX*. GOOD BOY! I THINK I WILL NAME HIM...")
-                        print("FLUFFY!... WHAT? HE LOOKS SO SOFT AND COMFORTABLE... NO? WELL I GUESS I DID SPOIL YOU.")
+                        print("HUH... HE SEEMS TO BE LISTENING TO MY VOICE,")
+                        print(" MOVE TO THE LEFT! *ZOMBIE MOVES TO THE LEFT*,")
+                        print("TO THE LEFT AGAIN! *ZOMBIE PUTS ZOMBIE BRAIN IN A BOX*.")
+                        print(" GOOD BOY! I THINK I WILL NAME HIM...")
+                        print("FLUFFY!... WHAT? HE LOOKS SO SOFT AND COMFORTABLE... NO?")
+                        print(" WELL I GUESS NO BODY GETS CLOSE TO ME HUH?")
                         print()
                         print("You then procede to unblock the way to the east hall")
                         inventory.append(item_fluffy)
@@ -750,6 +753,7 @@ def print_ending(real_ending):
       OU     OU LO    U LOS        EYOU    EYOU    EYOUTG   YOU LOS   
                                                                                             
                                 """)
+        exit()
 
 # This is the entry point of our program
 def main():
