@@ -84,7 +84,7 @@ sally = {
     "name": "sally",
 
     "description":
-    """ Sally is medical student, she's friendly, loves to socialize and meeting new people. Sometiems 
+    """ Sally is medical student, she's friendly, loves to socialize and meeting new people. Sometimes 
     maybe a little too enthusiastic and a little weird.""",
 
     "speech": "'HI YOU!!!!! COME JOIN THE PARTY!!!'",
