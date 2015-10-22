@@ -1,7 +1,7 @@
 from items import *
 from map import rooms
 
-inventory = [item_phone, item_earplugs, item_vodka, item_brain, item_hammer, item_dynamite]
+inventory = [item_phone, item_earplugs]
 
 drunk = False
 # Start game at the reception
